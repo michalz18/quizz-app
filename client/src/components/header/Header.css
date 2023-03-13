@@ -1,0 +1,135 @@
+#header {
+  position: fixed;
+  display: flex;
+  height: 6em;
+  width: 100vw;
+  justify-content: space-around;
+  background-color: white;
+  border-bottom: 1px solid var(--color-darkgray);
+  z-index:2;
+  background-color: var(--color-background);
+  font-family: 'Poppins';
+}
+
+#app-name {
+  padding: 0.5em;
+  font-weight: 500;
+  font-size: 2em;
+  display: flex;
+  font-family: 'Poppins';
+}
+
+#sec-part {
+  color: var(--color-yellow)
+}
+
+#logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+}
+
+#logo {
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 3em;
+}
+
+#logo-and-name-wrapper {
+  display: flex;
+  align-items: center;
+  width: 40%;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 1200px) {
+  #header {
+    width: 75vw;
+  }
+}
+
+#navbar {
+  display: flex;
+  align-items: center;
+}
+
+#navigation {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 80%;
+}
+
+#nnavbar-wrapper {
+  display: flex;
+}
+
+#bar-icon-wrapper {
+  display: none;
+}
+#bar-icon {
+  max-width: 100%;
+  max-height: 70%;
+}
+
+#login {
+  color: var(--color-yellow);
+  border: 2px solid var(--color-yellow);
+  background-color: var(--color-background);
+  padding: 0.7em;
+  cursor: pointer;
+}
+
+#login:hover {
+  border-color: var(--color-darkgray);
+  background-color: var(--color-darkgray);
+  color: var(--color-yellow);
+}
+
+@media only screen and (max-width: 700px) {
+  #navbar {
+    display: none;
+  }
+  #bar-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+  }
+  #navbar-wrapper {
+    position: fixed;
+    top: 6em;
+    right: 0;
+  }
+  #navbar {
+    flex-direction: column;
+    width: 300px;
+  }
+  
+  #navigation:hover #navbar {
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  #navbar {
+    flex-direction: column;
+    width: 100vw;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #login {
+    background-color: var(--color-darkgray);
+    color: var(--color-lightgray);
+    height: 1.8em;
+    border: none;
+    width:100%;
+    padding: 0;
+  }
+  #login:hover {
+      background-color: var(--color-darkgray);
+      color: var(--color-yellow);
+    }
+}

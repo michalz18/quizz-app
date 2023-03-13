@@ -1,0 +1,25 @@
+body {
+  --font-primary: 'Roboto';
+  --color-yellow: #FCC822;
+  --color-lightyellow: #FFCD2E;
+  --color-darkgray: #3B3B3B;
+  --color-background: #F8F3F3;
+  --color-lightgray: #D1D1D1;
+  margin: 0;
+  font-family: var(--font-primary);
+  display: flex;
+  min-height: fit-content;
+  width: 100vw;
+  background-color: var(--color-background);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@media only screen and (min-width: 1400px) {
+  body {
+    width: 98vw;
+  }
+}
