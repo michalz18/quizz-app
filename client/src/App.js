@@ -2,13 +2,14 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Welcome from "./components/welcome/Welcome";
 import About from "./components/about/About";
-
 import { useEffect, useState } from "react";
+import Quizzes from "./components/quizzes/Quizzes";
 
 function App() {
   const [menuChoices, setMenuChoices] = useState([
     { element: <Welcome />, text: "Welcome", active: true},
-    { element: <About />, text: "About us", active: false }
+    { element: <About />, text: "About us", active: false },
+    { element: <Quizzes/>, text: "Quizzes", active: false }
   ]);
   const [content, setContent] = useState(findContent());
   
