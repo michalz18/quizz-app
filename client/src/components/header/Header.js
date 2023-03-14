@@ -1,7 +1,13 @@
 import './Header.css';
 import MenuChoice from "./MenuChoice.js";
+import { useEffect, useState } from 'react';
 
 function Header({ menuChoices, changePage, onLogoClick }) {
+  const [choices, setChoices] = useState([]);
+  useEffect(() => {
+    setChoices(menuChoices.filter(choice => choice.text != 'Welcome'))
+  }, [])
+  
   // TODO wrzucić logo
   return (
     <div id="header">
@@ -14,7 +20,7 @@ function Header({ menuChoices, changePage, onLogoClick }) {
       <div id="navigation">
         <div id="navbar-wrapper">
           <div id="navbar">
-            {menuChoices.map((menuChoice, index) => 
+            {choices.map((menuChoice, index) => 
             <MenuChoice key={index} menuChoice={menuChoice} changePage={changePage}/>
             )}
             <button id="login">LOGIN</button>
