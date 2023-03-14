@@ -6,4 +6,5 @@ const quizSchema = new Schema({
   questions: Array
 });
 
-module.exports = model("quiz", quizSchema);
+const Quiz = model("Quiz", quizSchema)
+module.exports = Quiz;
