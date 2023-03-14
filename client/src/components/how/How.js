@@ -1,13 +1,13 @@
 import React from 'react';
 
-function Welcome({ goToQuizes }) {
+function How({ goToQuizes }) {
 
     return (
-        <div className='Welcome'>
-            Welcome
+        <div className='How'>
+            How it works?
             <button onClick={goToQuizes}>Quizes</button>
         </div>
     )
 }
 
-export default Welcome
+export default How;

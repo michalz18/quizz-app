@@ -4,12 +4,14 @@ import Welcome from "./components/welcome/Welcome";
 import About from "./components/about/About";
 import { useEffect, useState } from "react";
 import Quizzes from "./components/quizzes/Quizzes";
+import How from "./components/how/How";
 
 function App() {
   const [menuChoices, setMenuChoices] = useState([
-    { element: <Welcome />, text: "Welcome", active: true},
-    { element: <About />, text: "About us", active: false },
-    { element: <Quizzes/>, text: "Quizzes", active: false }
+    { element: <Welcome goToQuizes={() => changePage('Quizzes')}/>, text: "Welcome", active: true},
+    { element: <How goToQuizes={() => changePage('Quizzes')}/>, text: "How it works?", active: false },
+    { element: <Quizzes/>, text: "Quizzes", active: false },
+    { element: <About />, text: "About us", active: false }
   ]);
   const [content, setContent] = useState(findContent());
   
