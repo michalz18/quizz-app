@@ -1,48 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PureModal from 'react-pure-modal';
 import 'react-pure-modal/dist/react-pure-modal.min.css';
 
 function QuizModal(props) {
-    const { quiz, onClose, setVisible } = props;
+    const { quiz, setVisible } = props;
 
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [isCorrectAnswer, setIsCorrectAnswer] = useState(0);
-    const [score, setScore] = useState(0);
-
+    const [score, setScore] = useState([]);
     function handleNextQuestion() {
-        setScore(isCorrectAnswer)
-        setCurrentQuestionIndex(currentQuestionIndex + 1)
-
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
 
     function checkAnswer(answer) {
-        setIsCorrectAnswer(answer.isCorrect ? 1 : 0)
+        setScore(score.concat(answer.isCorrect))
+        console.log(score)
     }
-
 
     function getFinalScore() {
-        if (isCorrectAnswer) {
-            setScore(score + 1);
-        }
-        setVisible(true);
+        setVisible(true)
+        const resoult = score.filter(el => el === true)
+        console.log(resoult.length)
     }
-
-    useEffect(() => {
-        console.log(score);
-    }, [score]);
-
-
     return (
-        <PureModal
-            header={`Quiz: ${quiz.title}`}
-            footer={
-                currentQuestionIndex === quiz.questions.length - 1
-                && <button onClick={getFinalScore}>Close</button>
-            }
-            onClose={onClose}
-            isOpen
-        >
-
+        <div>
             {quiz.questions.map((question, index) => (
                 index === currentQuestionIndex && (
                     <div key={index}>
@@ -52,12 +32,12 @@ function QuizModal(props) {
                                 <button key={answerIndex} onClick={() => checkAnswer(answer)}>{answer.question}</button>
                             ))}
                         </div>
-                        {currentQuestionIndex < quiz.questions.length - 1 && <button onClick={handleNextQuestion}>Next</button>}
+                        {currentQuestionIndex < quiz.questions.length - 1
+                            ? <button onClick={handleNextQuestion}>Next</button> : <button onClick={() => { getFinalScore() }}>Close</button>}
                     </div>
                 )
             ))}
-
-        </PureModal>
+        </div>
     );
 }
 
