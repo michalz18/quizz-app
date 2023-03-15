@@ -1,0 +1,150 @@
+.HomeTitle {
+	padding-top: 2em;
+	margin: 0 40px;
+	line-height: 40px;
+	background-color:#f8f3f3;
+}
+.HomeImg {
+	padding-top: 2em;
+	width: 280px;
+	height: 260px;
+}
+
+.HomeText {
+	margin: 0 30px;
+	border-left: 2px solid;
+}
+
+.HomeButton {
+	width: 140px;
+	height: 40px;
+	margin: 2em auto;
+	display: flex;
+	background-color: #fcc822;
+	border: none;
+	color: #f8f3f3;
+	text-transform: uppercase;
+	justify-content: center;
+	line-height: 40px;
+}
+
+@media (min-width: 768px) {
+	.Home {
+		position: relative;
+		width: 100vw;
+		margin: 2em 0 1em 0;
+	}
+
+	.HomeTitle {
+		position: absolute;
+		width: 40vw;
+		line-height: 60px;
+		font-size: 3rem;
+		text-align: left;
+	}
+
+	.HomeImg {
+		position: absolute;
+		width: 50vw;
+		height: 50vh;
+	}
+
+	.HomeText {
+		position: absolute;
+		margin-top: 15em;
+		margin-left: 3em;
+		padding-left: 1em;
+	}
+
+	.HomeButton {
+		margin: 16em 0 0 6em;
+		min-width: 300px;
+		min-height: 60px;
+		padding: 10px;
+		position: absolute;
+		display: flex;
+		font-size: 1.4rem;
+		text-transform: uppercase;
+		letter-spacing: 1.3px;
+		font-weight: 700;
+		border: none;
+		box-shadow: 12px 12px 24px rgba(252, 200, 34, 0.64);
+		transition: all 0.3s ease-in-out 0s;
+		cursor: pointer;
+		outline: none;
+	}
+
+	.HomeButton::before {
+		content: "";
+		min-width: calc(300px + 12px);
+		min-height: calc(60px + 12px);
+		border: 6px solid #fcc822;
+		box-shadow: 0 0 60px rgba(252, 200, 34, 0.639);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		opacity: 0;
+		transition: all 0.3s ease-in-out 0s;
+	}
+
+	.HomeButton:hover,
+	.HomeButton:focus {
+		color: #313133;
+		transform: translateY(-6px);
+	}
+
+	.HomeButton:hover::before,
+	.HomeButton:focus::before {
+		opacity: 1;
+	}
+
+	.HomeButton::after {
+		content: "";
+		width: 30px;
+		height: 30px;
+		/* border-radius: 100%; */
+		border: 6px solid #fcc822;
+		position: absolute;
+		z-index: -1;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		animation: ring 1.5s infinite;
+	}
+
+	.HomeButton:hover::after,
+	.HomeButton:focus::after {
+		animation: none;
+		display: none;
+	}
+
+	@keyframes ring {
+		0% {
+			width: 30px;
+			height: 30px;
+			opacity: 1;
+		}
+		100% {
+			width: 300px;
+			height: 300px;
+			opacity: 0;
+		}
+	}
+}
+
+@media(min-width: 992px){
+	.HomeTitle {
+		width: 35vw;
+	}
+}
+
+@media(min-width: 1200px){
+	.HomeTitle {
+		font-size: 3.2rem;
+	}
+
+	.HomeImg {
+		width: 40vw;
+	}
+}

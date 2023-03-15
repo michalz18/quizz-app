@@ -7,6 +7,6 @@ const accountSchema = new Schema({
   quizes: Array
 });
 
-const Account = model("account", accountSchema);
+const Account = model("Account", accountSchema);
 
 module.exports = Account;

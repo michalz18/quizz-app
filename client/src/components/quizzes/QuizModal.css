@@ -1,0 +1,23 @@
+button{
+    background-color: #D1D1D1;  
+}
+button:hover {
+    background-color: #FCC822;
+  }
+
+  h2{
+    background-color: #FCC822; 
+  }
+  .correct:disabled{
+    background-color: green; 
+  }
+
+  .incorrect:disabled{
+    background-color: red; 
+  }
+  .next-btn{
+    background-color: #FCC822; 
+  }
+  .next-btn:disabled{
+    background-color: lightgray; 
+  }

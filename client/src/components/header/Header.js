@@ -3,7 +3,7 @@ import MenuChoice from "./MenuChoice.js";
 import { useEffect, useState } from 'react';
 import DropdownMenu from "../account/DropdownMenu"
 
-function Header({ menuChoices, changePage, onLogoClick }) {
+function Header({ menuChoices, changePage, onLogoClick, openModal }) {
   const [choices, setChoices] = useState([]);
   useEffect(() => {
     setChoices(menuChoices.filter(choice => choice.text != 'Welcome'))
@@ -31,6 +31,7 @@ function Header({ menuChoices, changePage, onLogoClick }) {
         </div>
         <button id="login">LOGIN</button>
         <DropdownMenu />
+        <button id="login" onClick={openModal}>LOGIN</button>
       </div>
     </div>
   );
