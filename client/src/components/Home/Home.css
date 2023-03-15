@@ -20,7 +20,6 @@
 	margin: 2em auto;
 	display: flex;
 	background-color: #fcc822;
-	border-radius: 10px;
 	border: none;
 	color: #f8f3f3;
 	text-transform: uppercase;
@@ -32,28 +31,27 @@
 	.Home {
 		position: relative;
 		width: 100vw;
-		margin-top: 2em;
+		margin: 2em 0 1em 0;
 	}
 
 	.Home h2 {
 		position: absolute;
-		width: 50vw;
-		margin: 0;
+		width: 40vw;
 		line-height: 60px;
 		font-size: 3rem;
+		text-align: left;
 	}
 
 	.HomeImg {
 		position: absolute;
 		width: 50vw;
-		width: 340px;
-		height: 320px;
+		height: 50vh;
 	}
 
 	.HomeText {
 		position: absolute;
 		margin-top: 15em;
-		margin-left: 2em;
+		margin-left: 3em;
 		padding-left: 1em;
 	}
 
@@ -68,14 +66,7 @@
 		text-transform: uppercase;
 		letter-spacing: 1.3px;
 		font-weight: 700;
-		color: #6c6c6c;
-		background: linear-gradient(
-			90deg,
-			rgba(255, 230, 45, 1) 0%,
-			rgba(252, 200, 34, 1) 100%
-		);
 		border: none;
-		border-radius: 1000px;
 		box-shadow: 12px 12px 24px rgba(252, 200, 34, 0.64);
 		transition: all 0.3s ease-in-out 0s;
 		cursor: pointer;
@@ -84,7 +75,6 @@
 
 	.HomeButton::before {
 		content: "";
-		border-radius: 1000px;
 		min-width: calc(300px + 12px);
 		min-height: calc(60px + 12px);
 		border: 6px solid #fcc822;
@@ -112,7 +102,7 @@
 		content: "";
 		width: 30px;
 		height: 30px;
-		border-radius: 100%;
+		/* border-radius: 100%; */
 		border: 6px solid #fcc822;
 		position: absolute;
 		z-index: -1;
@@ -139,5 +129,21 @@
 			height: 300px;
 			opacity: 0;
 		}
+	}
+}
+
+@media(min-width: 992px){
+	.Home h2 {
+		width: 35vw;
+	}
+}
+
+@media(min-width: 1200px){
+	.Home h2 {
+		font-size: 3.2rem;
+	}
+
+	.HomeImg {
+		width: 40vw;
 	}
 }
