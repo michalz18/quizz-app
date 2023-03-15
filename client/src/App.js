@@ -5,6 +5,8 @@ import About from "./components/about/About";
 import { useEffect, useState } from "react";
 import Quizzes from "./components/quizzes/Quizzes";
 import How from "./components/how/How";
+import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
+
 
 function App() {
   const [menuChoices, setMenuChoices] = useState([
@@ -32,10 +34,23 @@ function App() {
     setContent(menuChoices.find((choice) => choice.text === text).element);
   }
 
+  const [modal, setModal] = useState(false);
+
+  const closeModal = () => {
+    setModal(false);
+  }
+
+  const openModal = () => {
+    setModal(true);
+  }
+
   return (
     <div className="App">
-      <Header menuChoices={menuChoices} onLogoClick={() => changePage('Welcome')} changePage={(e) => changePage(e.target.textContent)} />
-      <div id="content">{content}</div>
+      <Header menuChoices={menuChoices} openModal={openModal} onLogoClick={() => changePage('Welcome')} changePage={(e) => changePage(e.target.textContent)} />
+      <div id="content">{content}
+      <LoginPopUp open={modal} close={closeModal}/>
+      </div>
+
     </div>
   );
 }

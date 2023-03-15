@@ -2,7 +2,7 @@ import './Header.css';
 import MenuChoice from "./MenuChoice.js";
 import { useEffect, useState } from 'react';
 
-function Header({ menuChoices, changePage, onLogoClick }) {
+function Header({ menuChoices, changePage, onLogoClick, openModal }) {
   const [choices, setChoices] = useState([]);
   useEffect(() => {
     setChoices(menuChoices.filter(choice => choice.text != 'Welcome'))
@@ -23,7 +23,7 @@ function Header({ menuChoices, changePage, onLogoClick }) {
             {choices.map((menuChoice, index) => 
             <MenuChoice key={index} menuChoice={menuChoice} changePage={changePage}/>
             )}
-            <button id="login">LOGIN</button>
+            <button id="login" onClick={openModal}>LOGIN</button>
           </div>
         </div>
         <div id="bar-icon-wrapper">
