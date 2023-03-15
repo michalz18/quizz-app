@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./components/header/Header";
-import Welcome from "./components/welcome/Welcome";
+import Home from "./components/Home/Home";
 import About from "./components/about/About";
 import { useEffect, useState } from "react";
 import Quizzes from "./components/quizzes/Quizzes";
@@ -10,7 +10,7 @@ import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
 
 function App() {
   const [menuChoices, setMenuChoices] = useState([
-    { element: <Welcome goToQuizes={() => changePage('Quizzes')}/>, text: "Welcome", active: true},
+    { element: <Home goToQuizes={() => changePage('Quizzes')}/>, text: "Home", active: true},
     { element: <How goToQuizes={() => changePage('Quizzes')}/>, text: "How it works?", active: false },
     { element: <Quizzes/>, text: "Quizzes", active: false },
     { element: <About />, text: "About us", active: false }

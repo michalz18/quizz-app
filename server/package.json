@@ -1,8 +1,14 @@
 {
-  "dependencies": {
-    "bootstrap": "^5.2.3",
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "mongoose": "^7.0.1"
-  }
+	"scripts": {
+		"start": "nodemon server.js"
+	},
+	"dependencies": {
+		"bootstrap": "^5.2.3",
+		"cors": "^2.8.5",
+		"express": "^4.18.2",
+		"mongoose": "^7.0.1"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.21"
+	}
 }
