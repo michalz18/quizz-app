@@ -2,7 +2,7 @@
 	padding-top: 2em;
 	margin: 0 40px;
 	line-height: 40px;
-	background-color:#f8f3f3;
+	background-color: #f8f3f3;
 }
 .HomeImg {
 	padding-top: 2em;
@@ -37,7 +37,7 @@
 
 	.HomeTitle {
 		position: absolute;
-		width: 40vw;
+		width: 42vw;
 		line-height: 60px;
 		font-size: 3rem;
 		text-align: left;
@@ -133,13 +133,13 @@
 	}
 }
 
-@media(min-width: 992px){
+@media (min-width: 992px) {
 	.HomeTitle {
 		width: 35vw;
 	}
 }
 
-@media(min-width: 1200px){
+@media (min-width: 1200px) {
 	.HomeTitle {
 		font-size: 3.2rem;
 	}

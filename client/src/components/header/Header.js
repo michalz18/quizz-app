@@ -1,19 +1,19 @@
 import './Header.css';
 import MenuChoice from "./MenuChoice.js";
 import { useEffect, useState } from 'react';
+import logo from './logo.jpg'
 
 function Header({ menuChoices, changePage, onLogoClick }) {
   const [choices, setChoices] = useState([]);
   useEffect(() => {
-    setChoices(menuChoices.filter(choice => choice.text != 'Welcome'))
+    setChoices(menuChoices.filter(choice => choice.text != 'Home'))
   }, [])
   
-  // TODO wrzucić logo
   return (
     <div id="header">
       <div id="logo-and-name-wrapper" onClick={onLogoClick}>
         <div id="logo-wrapper">
-          <img id="logo" src="/ecological.png" alt="logo"></img>
+          <img id="logo" src={logo} alt="logo"></img>
         </div>
         <div id="app-name">Quiz<section id="sec-part">App</section></div>
       </div>
