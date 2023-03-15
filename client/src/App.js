@@ -5,8 +5,9 @@ import About from "./components/about/About";
 import { useEffect, useState } from "react";
 import Quizzes from "./components/quizzes/Quizzes";
 import How from "./components/how/How";
+import Scoreboard from "./components/account/Scoreboard";
+import ChangePassword from "./components/account/ChangePasword";
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
-
 
 function App() {
   const [menuChoices, setMenuChoices] = useState([

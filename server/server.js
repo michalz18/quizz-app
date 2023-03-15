@@ -1,9 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const dbURI = require("./mongodbkey");
+const dbURI = require("./mongodbkey")
+const Accounts = require("./models/account")
 const Quiz = require("./models/quiz");
 const Account = require("./models/account");
+
 
 const app = express();
 
