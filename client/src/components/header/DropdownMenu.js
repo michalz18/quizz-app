@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import "./DropdownMenu.css"
 
-export default function AccountDropdown() {
+export default function AccountDropdown({changePage}) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     function toggleMenu() {
@@ -11,6 +11,7 @@ export default function AccountDropdown() {
     function handleOptionClick(option) {
         console.log(option)
         setIsMenuOpen(false);
+        changePage(option);
     }
 
     return (
