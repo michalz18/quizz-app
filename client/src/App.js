@@ -16,6 +16,8 @@ function App() {
     { element: <About />, text: "About us", active: false }
   ]);
   const [content, setContent] = useState(findContent());
+  const [modal, setModal] = useState(false);
+  const [loggedUser, setLoggedUser] = useState({});
   
   useEffect(()=> {
     const newChoices = [...menuChoices];
@@ -34,8 +36,6 @@ function App() {
     setContent(menuChoices.find((choice) => choice.text === text).element);
   }
 
-  const [modal, setModal] = useState(false);
-
   const closeModal = () => {
     setModal(false);
   }
@@ -44,11 +44,15 @@ function App() {
     setModal(true);
   }
 
+  function loggUser(user) {
+    setLoggedUser(user);
+  }
+
   return (
     <div className="App">
       <Header menuChoices={menuChoices} openModal={openModal} onLogoClick={() => changePage('Welcome')} changePage={(e) => changePage(e.target.textContent)} />
       <div id="content">{content}
-      <LoginPopUp open={modal} close={closeModal}/>
+      <LoginPopUp open={modal} close={closeModal} loggUser={loggUser}/>
       </div>
 
     </div>

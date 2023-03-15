@@ -1,17 +1,30 @@
 import { useState } from "react";
 import "./LoginForm.css";
-function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function LoginForm({loggUser}) {
+  const [email, setEmail] = useState("agnieszka@gmail.com");
+  const [password, setPassword] = useState("greatsectet");
 
   function handleSignUp() {
     console.log(email);
     console.log(password);
   }
 
-  function handleLogIn() {
-    console.log(email);
-    console.log(password);
+  async function handleLogIn() {
+    const user = await getUser();
+    loggUser(user);
+  }
+
+  async function getUser() {
+    try {
+        const endpoint = new URL('http://localhost:8080/user')
+        endpoint.searchParams.set('email', email);
+        endpoint.searchParams.set('password', password);
+        const response = await fetch(endpoint);
+        const user = await response.json();
+        return user
+      } catch (error) {
+        console.log(error);
+      }
   }
 
   return (
@@ -40,6 +53,7 @@ function LoginForm() {
               <div className="input-label">Email Address</div>
               <input
                 type="text"
+                value="agnieszka@gmail.com"
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>
@@ -49,6 +63,7 @@ function LoginForm() {
               <div className="input-label">Password</div>
               <input
                 type="password"
+                value="greatsectet"
                 onChange={(event) => setPassword(event.target.value)}
               />
             </div>
