@@ -10,31 +10,35 @@ import ChangePassword from "./components/account/ChangePasword";
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
 
 function App() {
-  const [menuChoices, setMenuChoices] = useState([
+  const [contentChoices, setContentChoices] = useState([
     { element: <Home goToQuizes={() => changePage('Quizzes')}/>, text: "Home", active: true},
     { element: <How goToQuizes={() => changePage('Quizzes')}/>, text: "How it works?", active: false },
     { element: <Quizzes/>, text: "Quizzes", active: false },
-    { element: <About />, text: "About us", active: false }
+    { element: <About />, text: "About us", active: false },
+    { element: <Scoreboard />, text: "Scoreboard", active: false },
+    { element: <ChangePassword />, text: "Change password", active: false }
   ]);
+  const [menuChoices, setMenuChoices] = useState([contentChoices[1], contentChoices[2], contentChoices[3]]);
+
   const [content, setContent] = useState(findContent());
   const [modal, setModal] = useState(false);
   const [loggedUser, setLoggedUser] = useState({});
   
   useEffect(()=> {
-    const newChoices = [...menuChoices];
+    const newChoices = [...contentChoices];
     newChoices.forEach((choice) => (choice.active = false));
     newChoices.find((choice) => choice.element === content).active = true;
-    setMenuChoices(newChoices);
-    sessionStorage.setItem("currentContent", menuChoices.find(choice => choice.active).text);
+    setContentChoices(newChoices);
+    sessionStorage.setItem("currentContent", contentChoices.find(choice => choice.active).text);
   }, [content]);
 
   function findContent() {
     const text = sessionStorage.getItem("currentContent");
-    return menuChoices.find((choice) => (text === null) ? choice.active : choice.text === text).element;
+    return contentChoices.find((choice) => (text === null) ? choice.active : choice.text === text).element;
   }
 
   function changePage(text) {
-    setContent(menuChoices.find((choice) => choice.text === text).element);
+    setContent(contentChoices.find((choice) => choice.text === text).element);
   }
 
   const closeModal = () => {
@@ -51,7 +55,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header menuChoices={menuChoices} openModal={openModal} onLogoClick={() => changePage('Welcome')} changePage={(e) => changePage(e.target.textContent)} />
+      <Header menuChoices={menuChoices} openModal={openModal} onLogoClick={() => changePage('Home')} changePage={changePage} />
       <div id="content">{content}
       <LoginPopUp open={modal} close={closeModal} loggUser={loggUser}/>
       </div>
