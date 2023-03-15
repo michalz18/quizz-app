@@ -52,11 +52,11 @@ function QuizModal(props) {
                         <div>
                             {question.answers.map((answer, answerIndex) => (
                                 <button className={answerColor} key={answerIndex} onClick={() => checkAnswer(answer)} disabled={!disableBtn} >{answer.question}</button>
-
                             ))}
                         </div>
                         {currentQuestionIndex < quiz.questions.length - 1
                             ? <button className='next-btn' onClick={handleNextQuestion} disabled={disableBtn}>Next</button> : <button onClick={() => { getFinalScore() }} disabled={disableBtn}>Close</button>}
+                          
                     </div>
                 )
             ))}

@@ -8,6 +8,7 @@ function Score(props) {
     return (
         <div>
             <PureModal
+            
                 header={`Your score: ${score} /10`}
                 footer={
                     <button onClick={() => closeSummary(false)}>Hurrah</button>
