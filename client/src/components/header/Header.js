@@ -1,6 +1,7 @@
 import './Header.css';
 import MenuChoice from "./MenuChoice.js";
 import { useEffect, useState } from 'react';
+import DropdownMenu from "../account/DropdownMenu"
 
 function Header({ menuChoices, changePage, onLogoClick }) {
   const [choices, setChoices] = useState([]);
@@ -29,6 +30,7 @@ function Header({ menuChoices, changePage, onLogoClick }) {
           <img id="bar-icon" src="/menu.png" alt="menu-icon"></img>
         </div>
         <button id="login">LOGIN</button>
+        <DropdownMenu />
       </div>
     </div>
   );
