@@ -2,8 +2,10 @@ import './Header.css';
 import MenuChoice from "./MenuChoice.js";
 import { useEffect, useState } from 'react';
 import logo from './logo.jpg'
+import DropdownMenu from "./DropdownMenu"
 
-function Header({ menuChoices, changePage, onLogoClick }) {
+
+function Header({ menuChoices, changePage, onLogoClick, openModal }) {
   const [choices, setChoices] = useState([]);
   useEffect(() => {
     setChoices(menuChoices.filter(choice => choice.text != 'Home'))
@@ -28,7 +30,8 @@ function Header({ menuChoices, changePage, onLogoClick }) {
         <div id="bar-icon-wrapper">
           <img id="bar-icon" src="/menu.png" alt="menu-icon"></img>
         </div>
-        <button id="login">LOGIN</button>
+        <button id="login" onClick={openModal}>LOGIN</button>
+        <DropdownMenu changePage={changePage}/>
       </div>
     </div>
   );

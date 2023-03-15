@@ -1,9 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const dbURI = require("./mongodbkey");
+const dbURI = require("./mongodbkey")
+const Accounts = require("./models/account")
 const Quiz = require("./models/quiz");
 const Account = require("./models/account");
+
 
 const app = express();
 
@@ -22,8 +24,10 @@ app.get("/quizzes", async (req, res) => {
 
 app.get("/user", async (req, res) => {
     try {
-        const response = await Account.find()
-        res.status(200).json(response)
+
+        const response = await Account.find({"email": req.query.email, "password": req.query.password})
+        const user = response[0];
+        res.status(200).json(user)
     } catch (error) {
         res.status(500).json({ message: 'ServerError!', error: error.message })
     }
