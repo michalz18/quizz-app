@@ -8,11 +8,11 @@ button:hover {
   h2{
     background-color: #FCC822; 
   }
-  .correct-answer:disabled{
+  .correct:disabled{
     background-color: green; 
   }
 
-  .incorrect-answer:disabled{
+  .incorrect:disabled{
     background-color: red; 
   }
   .next-btn{
