@@ -16,7 +16,8 @@ function QuizModal(props) {
 
     // Array of buttons to represent the progress
     const progress = [...Array(quiz.questions.length).keys()];
-
+    const maxPoints = progress.length
+    console.log(progress.length)
 
     function handleNextQuestion() {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -26,7 +27,6 @@ function QuizModal(props) {
 
     function checkAnswer(answer, answerIndex) {
         setScore(score.concat(answer.isCorrect))
-        console.log(score)
         setDisableBtn(!disableBtn)
         setSelectedAnswerIndex(answerIndex);
 
@@ -35,7 +35,6 @@ function QuizModal(props) {
     function getFinalScore() {
         setShowScore(true)
         const resoult = score.filter(el => el === true)
-        console.log(resoult.length)
         setPoints(resoult.length)
     }
 
@@ -88,7 +87,7 @@ function QuizModal(props) {
                 )
             ))}
             {showScore && (
-                <Score score={points} onClose={handleCloseScore} setVisible={setVisible} isOpen={showScore} closeSummary={closeSummary} />
+                <Score score={points} onClose={handleCloseScore} setVisible={setVisible} isOpen={showScore} closeSummary={closeSummary} maxPoints={maxPoints} />
             )}
         </div>
     );
