@@ -1,41 +1,85 @@
 .account-dropdown {
-    position: relative;
-    display: inline-block;
-    margin-right: 10px;
-  }
-  
-  .account-dropdown button {
-    color: var(--color-yellow);
-    border: 2px solid var(--color-yellow);
-    background-color: var(--color-background);
-    padding: 0.7em;
-    cursor: pointer;
+	width: 100px;
+	height: 50px;
+	margin-right: 10px;
+	padding-left: 50px;
+	position: relative;
+	top: 40%;
+}
 
-  }
-  
-  .account-dropdown button:hover {
-    border-color: var(--color-darkgray);
-    background-color: var(--color-darkgray);
-    color: var(--color-yellow);
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: white;
-    border: 2px solid var(--color-yellow);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    width: 160px;
-    z-index: 1;
-  }
+.account-dropdown button {
+	width: 100px;
+	height: 50px;
+	color: var(--color-yellow);
+	border: 2px solid var(--color-yellow);
+	background-color: var(--color-background);
+	padding: 0.7em;
+	cursor: pointer;
+}
+
+
+.account-dropdown button:hover {
+	border-color: var(--color-darkgray);
+	background-color: var(--color-darkgray);
+	color: var(--color-yellow);
+}
+
+.dropdown-menu {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	background-color: white;
+	border: 2px solid var(--color-yellow);
+	border-radius: 4px;
+	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 160px;
+	z-index: 1;
+}
+
+.dropdown-menu li:first-child {
+	border-bottom: 1px solid black;
+}
+
+.dropdown-menu li {
+	padding: 8px 16px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	color: var(--color-yellow);
+}
+
+.dropdown-menu li:hover {
+	background-color: var(--color-darkgray);
+	color: var(--color-yellow);
+}
+
+@media (max-width: 576px) {
+	.account-dropdown {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		/* display: none; */
+	}
+	.account-dropdown button {
+		width: 90px;
+		height: 40px;
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
 
   .dropdown-menu li:first-child {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--color-darkgray)
+  }
+
+  .dropdown-menu li:nth-child(2) {
+    border-bottom: 1px solid var(--color-darkgray)
   }
   
   .dropdown-menu li {
@@ -49,3 +93,4 @@
     background-color: var(--color-darkgray);
     color: var(--color-yellow);
   }
+

@@ -10,14 +10,19 @@ import ChangePassword from "./components/account/ChangePasword";
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
 
 function App() {
+  const [loggedUser, setLoggedUser] = useState({});
   const [contentChoices, setContentChoices] = useState([
     { element: <Home goToQuizes={() => changePage('Quizzes')}/>, text: "Home", active: true},
     { element: <How goToQuizes={() => changePage('Quizzes')}/>, text: "How it works?", active: false },
     { element: <Quizzes/>, text: "Quizzes", active: false },
     { element: <About />, text: "About us", active: false },
-    { element: <Scoreboard />, text: "Scoreboard", active: false },
-    { element: <ChangePassword />, text: "Change password", active: false }
   ]);
+  useEffect(() => {
+    setContentChoices([...contentChoices, 
+      { element: <Scoreboard />, text: "Scoreboard", active: false },
+      { element: <ChangePassword loggedUser={loggedUser}/>, text: "Change password", active: false }
+    ])
+  }, [loggedUser])
   const [menuChoices, setMenuChoices] = useState([contentChoices[1], contentChoices[2], contentChoices[3]]);
 
   const [content, setContent] = useState(findContent());

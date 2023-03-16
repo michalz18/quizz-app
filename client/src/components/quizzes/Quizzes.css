@@ -1,0 +1,36 @@
+/* Default styles */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .button-container button {
+    width: 45%;
+    margin: 10px;
+    background-color: #FCC822;
+    color: black;
+    border: none;
+    padding: 80px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 2rem;
+  }
+  
+  .button-container button:hover {
+    background-color: #6C6C6C;
+  }
+  
+  /* Responsive styles for smaller screens */
+  @media (max-width: 600px) {
+    .button-container {
+      flex-direction: column;
+    }
+  
+    .button-container button {
+      width: 100%;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      padding: 10px;
+    }
+  }
+  
