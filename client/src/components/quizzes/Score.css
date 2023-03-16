@@ -46,10 +46,6 @@
 .container .pure-modal-backdrop .pure-modal{
     border-radius: 50;
 }
-.container .pure-modal {
-    
-    background-color: inherit;
-}
 
 .container .pure-modal-overlay {
     display: flex ;
