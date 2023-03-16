@@ -1,23 +1,107 @@
-button{
-    background-color: #D1D1D1;  
+.button-container .question-container button{
+  
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-size: 1.2rem;
 }
-button:hover {
-    background-color: #FCC822;
-  }
 
-  h2{
-    background-color: #FCC822; 
-  }
-  .correct:disabled{
-    background-color: green; 
-  }
+.question-container h2 {
+  height: 100px;
+ 
+  background-color: #FCC822;
+  color: white;
+  padding: 10px;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
 
-  .incorrect:disabled{
-    background-color: red; 
-  }
-  .next-btn{
-    background-color: #FCC822; 
-  }
-  .next-btn:disabled{
-    background-color: lightgray; 
-  }
+
+.question-container button {
+
+
+  background-color: #D1D1D1;
+  color: #000;
+  border: none;
+  padding: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  margin: 25px;
+
+}
+
+.question-container button:disabled {
+  background-color: #D1D1D1;
+}
+
+.question-container button:disabled:hover {
+  background-color: #D1D1D1;
+}
+
+
+.question-container button:hover {
+  background-color: #FCC822;
+}
+
+.question-container button {
+  background-color: #D1D1D1;
+}
+
+
+.question-container .correct:disabled {
+  background-color: green;
+}
+
+.question-container .correct:disabled:hover {
+  background-color: green;
+}
+
+.question-container .incorrect:disabled {
+  background-color: red;
+}
+
+.question-container .incorrect:disabled:hover {
+  background-color: red;
+}
+
+.question-container .next-btn {
+  background-color: #FCC822;
+}
+
+.question-container .next-btn:disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
+
+.question-container .close-btn {
+  background-color: #FCC822;
+}
+
+.question-container .close-btn:disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
+
+
+.question-container .progress-btn {
+  display: inline-block;
+  height: 5px;
+  width: 5px;
+  padding: 10px;
+  margin: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 7px solid #FCC822;
+  background-color: white;
+  color: #000;
+
+}
+
+.question-container .progress-btn:disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+  border: 7px solid grey;
+}

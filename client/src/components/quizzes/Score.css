@@ -1,0 +1,67 @@
+.score-circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #FCC822;
+    width: 250px;
+    height: 250px;
+    padding: 25px;
+    color: #fff;
+    font-size: 1.9rem;
+    text-align: center;
+
+}
+
+
+.button-container .score-circle button {
+    padding: 10px 20px;
+    background-color: #6C6C6C;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.button-container .score-circle button:hover{
+    background-color: #9e9b9b;
+}
+.container .panel-body.scrollable{
+    background-color: transparent;
+}
+
+
+.container .modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color:#ffcd2e;
+    opacity: 1;
+    border-radius: 50%;
+    
+}
+.container .pure-modal-backdrop .pure-modal{
+    border-radius: 50;
+}
+.container .pure-modal {
+    
+    background-color: inherit;
+}
+
+.container .pure-modal-overlay {
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+    
+}
+
+.container .close{
+    display: none;
+}
+.container .pure-modal .panel-body {
+    padding: 0px;
+    
+}
