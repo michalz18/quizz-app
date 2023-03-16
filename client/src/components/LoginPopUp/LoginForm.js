@@ -1,31 +1,73 @@
 import { useState } from "react";
 import "./LoginForm.css";
-function LoginForm({loggUser}) {
-  const [email, setEmail] = useState("agnieszka@gmail.com");
-  const [password, setPassword] = useState("greatsectet");
 
-  function handleSignUp() {
-    console.log(email);
-    console.log(password);
+const noUserMessage = "Either email or password are incorect. Did you mean to Sign up?"
+const loginTakenMessage = "Sorry, but there is allready an account using that email."
+
+function LoginForm({loggUser}) {
+  const [email, setEmail] = useState("marianka@gmail.com");
+  const [password, setPassword] = useState("greatsecret");
+  const [logInMessage, setLogInMessage] = useState('')
+
+  async function handleSignUp() {
+    const data = await saveUser();
+    if (data.length === 0) {
+     setLogInMessage(loginTakenMessage);
+    } else {
+     loggUser(data[0]); 
+    }  
   }
 
   async function handleLogIn() {
-    const user = await getUser();
-    loggUser(user);
+    const data = await getUser();
+    if (data.length === 0) {
+     setLogInMessage(noUserMessage);
+    } else {
+     loggUser(data[0]); 
+    }  
+  }
+
+  async function saveUser() {
+    try {
+      const response = await fetch('http://localhost:8080/signup', {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          email: email,
+          password: password
+      }),
+      });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function getUser() {
     try {
-        const endpoint = new URL('http://localhost:8080/user')
-        endpoint.searchParams.set('email', email);
-        endpoint.searchParams.set('password', password);
-        const response = await fetch(endpoint);
-        const user = await response.json();
-        return user
+        const response = await fetch('http://localhost:8080/login', {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({
+            email: email,
+            password: password
+        }),
+        });
+        const data = await response.json();
+        return data;
       } catch (error) {
         console.log(error);
       }
   }
+
+  const handleEmailChange = event => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = event => {
+    setPassword(event.target.value);
+  };
 
   return (
     <>
@@ -40,8 +82,10 @@ function LoginForm({loggUser}) {
             </div>
           </div>
           <div className="login-form-header-text">
-            <div>Welcome!</div>
-            <div>Please login/signup to your account.</div>
+            {logInMessage 
+            ? <div id="logg-error">{logInMessage}</div>
+             : (<div><div>Welcome!</div>
+            <div>Please login/signup to your account.</div></div>)}
           </div>
         </div>
         <form
@@ -53,8 +97,8 @@ function LoginForm({loggUser}) {
               <div className="input-label">Email Address</div>
               <input
                 type="text"
-                value="agnieszka@gmail.com"
-                onChange={(event) => setEmail(event.target.value)}
+                value={email}
+                onChange={handleEmailChange}
               />
             </div>
           </label>
@@ -63,8 +107,8 @@ function LoginForm({loggUser}) {
               <div className="input-label">Password</div>
               <input
                 type="password"
-                value="greatsectet"
-                onChange={(event) => setPassword(event.target.value)}
+                value={password}
+                onChange={handlePasswordChange}
               />
             </div>
           </label>
@@ -79,7 +123,6 @@ function LoginForm({loggUser}) {
             <div className="google-text">Or login with </div>
             <div id="google">Google</div>
           </div>
-
           <div id="login-submit-btns">
             <button className="login" onClick={handleLogIn}>LOGIN</button>
             <button className="sigup-btn" onClick={handleSignUp}>SIGNUP</button>
