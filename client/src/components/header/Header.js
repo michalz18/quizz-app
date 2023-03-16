@@ -36,7 +36,6 @@ function Header({ menuChoices, changePage, onLogoClick, openModal, loggedUser })
         : <DropdownMenu changePage={changePage}/>
         }
       </div>
-        <DropdownMenu changePage={changePage}/>
     </div>
   );
 }
