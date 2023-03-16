@@ -61,7 +61,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header menuChoices={menuChoices} openModal={openModal} onLogoClick={() => changePage('Home')} changePage={changePage} />
+      <Header menuChoices={menuChoices} openModal={openModal} onLogoClick={() => changePage('Home')} changePage={changePage} loggedUser={loggedUser}/>
       <div id="content">{content}
       <LoginPopUp open={modal} close={closeModal} loggUser={loggUser}/>
       </div>

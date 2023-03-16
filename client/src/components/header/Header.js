@@ -5,7 +5,7 @@ import logo from './logo.jpg'
 import DropdownMenu from "./DropdownMenu"
 
 
-function Header({ menuChoices, changePage, onLogoClick, openModal }) {
+function Header({ menuChoices, changePage, onLogoClick, openModal, loggedUser }) {
   const [choices, setChoices] = useState([]);
   useEffect(() => {
     setChoices(menuChoices.filter(choice => choice.text != 'Home'))
@@ -19,7 +19,6 @@ function Header({ menuChoices, changePage, onLogoClick, openModal }) {
         </div>
         <div id="app-name">Quiz<section id="sec-part">App</section></div>
       </div>
-        <button id="login" onClick={openModal}>LOGIN</button>
       <div id="navigation">
         <div id="navbar-wrapper">
           <div id="navbar">
@@ -32,7 +31,10 @@ function Header({ menuChoices, changePage, onLogoClick, openModal }) {
           <img id="bar-icon" src="/menu.png" alt="menu-icon"></img>
         </div>
       </div>
-        <DropdownMenu changePage={changePage}/>
+      {loggedUser.email === undefined 
+        ? <button id="login" onClick={openModal}>LOGIN</button>
+        : <DropdownMenu changePage={changePage}/>
+        }
     </div>
   );
 }
