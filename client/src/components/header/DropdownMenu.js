@@ -21,6 +21,7 @@ export default function AccountDropdown({changePage}) {
                 <ul className="dropdown-menu">
                     <li onClick={() => handleOptionClick("Change password")}>Change Password</li>
                     <li onClick={() => handleOptionClick("Scoreboard")}>Your Scoreboard</li>
+                    <li onClick={() => handleOptionClick("Home")}>Logout</li>
                 </ul>
             )}
         </div>
