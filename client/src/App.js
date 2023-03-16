@@ -23,6 +23,7 @@ function App() {
   const [content, setContent] = useState(findContent());
   const [modal, setModal] = useState(false);
   const [loggedUser, setLoggedUser] = useState({});
+  const [isLogged, setIsLogged] = useState(false);
   
   useEffect(()=> {
     const newChoices = [...contentChoices];
@@ -55,7 +56,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header menuChoices={menuChoices} openModal={openModal} onLogoClick={() => changePage('Home')} changePage={changePage} />
+      <Header menuChoices={menuChoices} openModal={openModal} onLogoClick={() => changePage('Home')} changePage={changePage} loggedUser={loggedUser}/>
       <div id="content">{content}
       <LoginPopUp open={modal} close={closeModal} loggUser={loggUser}/>
       </div>
