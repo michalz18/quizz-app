@@ -31,8 +31,8 @@ function Header({ menuChoices, changePage, onLogoClick, openModal }) {
         <div id="bar-icon-wrapper">
           <img id="bar-icon" src="/menu.png" alt="menu-icon"></img>
         </div>
-        <DropdownMenu changePage={changePage}/>
       </div>
+        <DropdownMenu changePage={changePage}/>
     </div>
   );
 }
