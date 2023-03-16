@@ -20,18 +20,16 @@ app.get("/quizzes", async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'ServerError!', error: error.message })
     }
-})
+});
 
 app.get("/user", async (req, res) => {
     try {
-
-        const response = await Account.find({"email": req.query.email, "password": req.query.password})
-        const user = response[0];
-        res.status(200).json(user)
+        const userResponse = await Account.find({"email": req.query.email, "password": req.query.password});
+        res.status(200).json(userResponse);
     } catch (error) {
         res.status(500).json({ message: 'ServerError!', error: error.message })
     }
-})
+});
 
 
 mongoose

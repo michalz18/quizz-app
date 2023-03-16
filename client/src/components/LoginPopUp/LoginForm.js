@@ -1,8 +1,12 @@
 import { useState } from "react";
 import "./LoginForm.css";
+
+const noUserMessage = "We don't recognize this email and password. Did you mean to Sign up?"
+
 function LoginForm({loggUser}) {
   const [email, setEmail] = useState("agnieszka@gmail.com");
-  const [password, setPassword] = useState("greatsectet");
+  const [password, setPassword] = useState("greatsecret");
+  const [logInMessage, setLogInMessage] = useState('')
 
   function handleSignUp() {
     console.log(email);
@@ -10,8 +14,12 @@ function LoginForm({loggUser}) {
   }
 
   async function handleLogIn() {
-    const user = await getUser();
-    loggUser(user);
+    const data = await getUser();
+    if (data.lenght != 0) {
+     setLogInMessage(noUserMessage);
+    } else {
+      loggUser(data[0]); 
+    }  
   }
 
   async function getUser() {
@@ -20,8 +28,8 @@ function LoginForm({loggUser}) {
         endpoint.searchParams.set('email', email);
         endpoint.searchParams.set('password', password);
         const response = await fetch(endpoint);
-        const user = await response.json();
-        return user
+        const data = await response.json();
+        return data;
       } catch (error) {
         console.log(error);
       }
@@ -40,8 +48,10 @@ function LoginForm({loggUser}) {
             </div>
           </div>
           <div className="login-form-header-text">
-            <div>Welcome!</div>
-            <div>Please login/signup to your account.</div>
+            {logInMessage 
+            ? <div id="logg-error">{logInMessage}</div>
+             : (<div><div>Welcome!</div>
+            <div>Please login/signup to your account.</div></div>)}
           </div>
         </div>
         <form
@@ -79,7 +89,6 @@ function LoginForm({loggUser}) {
             <div className="google-text">Or login with </div>
             <div id="google">Google</div>
           </div>
-
           <div id="login-submit-btns">
             <button className="login" onClick={handleLogIn}>LOGIN</button>
             <button className="sigup-btn" onClick={handleSignUp}>SIGNUP</button>
