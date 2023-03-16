@@ -16,6 +16,7 @@
 	cursor: pointer;
 }
 
+
 .account-dropdown button:hover {
 	border-color: var(--color-darkgray);
 	background-color: var(--color-darkgray);
@@ -71,3 +72,24 @@
 		transform: translate(-50%, -50%);
 	}
 }
+
+  .dropdown-menu li:first-child {
+    border-bottom: 1px solid var(--color-darkgray)
+  }
+
+  .dropdown-menu li:nth-child(2) {
+    border-bottom: 1px solid var(--color-darkgray)
+  }
+  
+  .dropdown-menu li {
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--color-yellow)
+  }
+  
+  .dropdown-menu li:hover {
+    background-color: var(--color-darkgray);
+    color: var(--color-yellow);
+  }
+
