@@ -1,20 +1,23 @@
 import PureModal from 'react-pure-modal';
 import 'react-pure-modal/dist/react-pure-modal.min.css';
-
+import './Score.css'
 function Score(props) {
 
     const { score, onClose, closeSummary } = props
 
     return (
-        <div>
+        <div className='container'>
             <PureModal
-            
-                header={`Your score: ${score} /10`}
-                footer={
-                    <button onClick={() => closeSummary(false)}>Hurrah</button>
-                }
+           
+                
                 isOpen
             >
+                <div className="modal-content">
+                    <div className="score-circle">
+                        <h2>Your score: {score} / 10</h2>
+                        <button onClick={() => closeSummary(false)}>Hurrah</button>
+                    </div>
+                </div>
             </PureModal>
         </div>
     )
