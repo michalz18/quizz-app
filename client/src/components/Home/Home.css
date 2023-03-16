@@ -103,7 +103,6 @@
 		content: "";
 		width: 30px;
 		height: 30px;
-		/* border-radius: 100%; */
 		border: 6px solid #fcc822;
 		position: absolute;
 		z-index: -1;
@@ -141,10 +140,22 @@
 
 @media (min-width: 1200px) {
 	.HomeTitle {
-		font-size: 3.2rem;
+		padding-top: 40px;
+		margin: 0 40px;
+		line-height: 80px;
+		font-size: 3.4rem;
+	}
+
+	.HomeText {
+		margin: 250px 0 0 50px;
+		border-left: 3px solid #fcc822;
+		font-size: 1.2rem;
 	}
 
 	.HomeImg {
-		width: 40vw;
+		width: 400px;
+		height: 340px;
+		margin: 10px 0 0 40px;
+		padding-top: 2em;
 	}
-}
+	}
