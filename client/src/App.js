@@ -23,7 +23,6 @@ function App() {
   const [content, setContent] = useState(findContent());
   const [modal, setModal] = useState(false);
   const [loggedUser, setLoggedUser] = useState({});
-  const [isLogged, setIsLogged] = useState(false);
   
   useEffect(()=> {
     const newChoices = [...contentChoices];
