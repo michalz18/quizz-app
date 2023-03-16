@@ -31,9 +31,9 @@
 }
 
 #logo {
-  max-width: 100%;
-  max-height: 100%;
-  min-width: 3em;
+  /* max-width: 100%;
+  max-height: 100%; */
+  /* min-width: 3em; */
 }
 
 #logo-and-name-wrapper {
@@ -74,10 +74,11 @@
 }
 
 #login {
+  /* margin: 1em; */
+  margin: 0 auto;
   color: var(--color-yellow);
   border: 2px solid var(--color-yellow);
   background-color: var(--color-background);
-  padding: 0.7em;
   cursor: pointer;
 }
 
@@ -110,6 +111,13 @@
   #navigation:hover #navbar {
     display: flex;
   }
+
+
+  #app-name{
+    padding-left: 0;
+    font-size: 1.2rem;
+  }
+
 }
 
 @media only screen and (max-width: 450px) {
@@ -117,9 +125,36 @@
     flex-direction: column;
     width: 100vw;
   }
+  #logo-and-name-wrapper{
+    margin-left: -30px;
+  }
+
+  #logo{
+    width: 20px;
+    height: 25px;
+  }
+
+  #login{
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  #bar-icon-wrapper{
+    width: 40px;
+    height: 40px;
+    margin-right: 0;
+    position: absolute;
+    display: flex;
+    top: 50%;
+    margin-left: 100px;
+    transform: translateY(-50%);
+  }
+
 }
 
-@media only screen and (max-width: 700px) {
+/* @media only screen and (max-width: 700px) {
   #login {
     background-color: var(--color-darkgray);
     color: var(--color-lightgray);
@@ -132,4 +167,4 @@
       background-color: var(--color-darkgray);
       color: var(--color-yellow);
     }
-}
+} */
