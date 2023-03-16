@@ -13,17 +13,32 @@ app.use(express.json());
 app.get("/quizzes", async (req, res) => {
     try {
         const response = await Quiz.find()
-      
         res.status(200).json(response)
     } catch (error) {
         res.status(500).json({ message: 'ServerError!', error: error.message })
     }
 });
 
-app.get("/user", async (req, res) => {
+app.post("/login", async (req, res) => {
     try {
-        const userResponse = await Account.find({"email": req.query.email, "password": req.query.password});
-        res.status(200).json(userResponse);
+        const { email, password } = req.body;
+        const response = await Account.find({"email": email, "password": password});
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(500).json({ message: 'ServerError!', error: error.message })
+    }
+});
+
+app.post("/signup", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const emailResponse = await Account.find({"email": email});
+        if (emailResponse.length != 0) {
+            res.status(200).json([]);
+            return;
+        } 
+        const response = await Account.create({"email": email, "password": password});
+        res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ message: 'ServerError!', error: error.message })
     }
