@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./LoginForm.css";
 function LoginForm({loggUser}) {
   const [email, setEmail] = useState("agnieszka@gmail.com");
-  const [password, setPassword] = useState("greatsectet");
+  const [password, setPassword] = useState("123");
 
   function handleSignUp() {
     console.log(email);
@@ -63,7 +63,7 @@ function LoginForm({loggUser}) {
               <div className="input-label">Password</div>
               <input
                 type="password"
-                value="greatsectet"
+                value="123"
                 onChange={(event) => setPassword(event.target.value)}
               />
             </div>

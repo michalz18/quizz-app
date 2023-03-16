@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PureModal from "react-pure-modal";
 import "./ChangePassword.css";
 
-export default function ChangePasswordFrom() {
+export default function ChangePasswordFrom({ loggedUser }) {
   const [prevPassword, setPrevPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
@@ -23,8 +23,8 @@ export default function ChangePasswordFrom() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: "agnieszka@gmail.com",
-        oldPassword: prevPassword,
+        email: loggedUser.email,
+        oldPassword: loggedUser.password,
         newPassword: newPassword,
       }),
     });
