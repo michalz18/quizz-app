@@ -9,4 +9,4 @@ const accountSchema = new Schema({
 
 const Account = model("Account", accountSchema);
 
-module.exports = Account;
+module.exports = Account; 
