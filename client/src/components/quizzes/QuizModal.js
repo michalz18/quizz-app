@@ -49,16 +49,16 @@ function QuizModal(props) {
     }
 
     return (
-        <div>
+        <div className='question-container'>
             {quiz.questions.map((question, index) => (
                 index === currentQuestionIndex && (
                     <div key={index}>
                         <h2>{question.question}</h2>
-                        <div>
+                        <div className='question'>
                             {question.answers.map((answer, answerIndex) => (
                                 <button className={
                                     selectedAnswerIndex === answerIndex ? answer.isCorrect ? 'correct' : 'incorrect' : (answer.isCorrect ? 'correct' : '')
-                                } key={answerIndex} onClick={() => checkAnswer(answer, answerIndex)} disabled={!disableBtn} >{answer.question}</button>
+                                } key={answerIndex} onClick={() => checkAnswer(answer, answerIndex)} disabled={!disableBtn} >{answer.answer}</button>
 
                             ))}
                         </div>
@@ -66,16 +66,21 @@ function QuizModal(props) {
                             ? (
                                 <>
                                     <button className='next-btn' onClick={handleNextQuestion} disabled={disableBtn}>Next</button>
+                                    <div>
                                     {progress.map((p, i) => (
                                         <button key={i} className="progress-btn" disabled={i > currentQuestionIndex}>{p + 1}</button>
                                     ))}
+                                    </div>
                                 </>
                             ) : (
                                 <>
-                                    <button onClick={() => { getFinalScore() }} disabled={disableBtn}>Close</button>
+                                    <button className='close-btn' onClick={() => { getFinalScore() }} disabled={disableBtn}>Close</button>
+                                    <div>
                                     {progress.map((p, i) => (
+                                        
                                         <button key={i} className="progress-btn" disabled={i > currentQuestionIndex}>{p + 1}</button>
                                     ))}
+                                    </div>
                                 </>
                             )
                         }

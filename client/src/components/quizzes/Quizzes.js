@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import QuizModal from './QuizModal';
-
+import './Quizzes.css'
 
 function Quizzes() {
 
@@ -42,7 +42,7 @@ function Quizzes() {
     }
 
     return (
-        <div>
+        <div className='button-container'>
             {quizzesVisible && quizzes && quizzes.map((quiz, index) => (
                 <button onClick={() => handleClick(quiz)} key={index}>{quiz.title}</button>
             ))}

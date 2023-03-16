@@ -7,7 +7,7 @@ const loginTakenMessage = "Sorry, but there is allready an account using that em
 function LoginForm({loggUser}) {
   const [email, setEmail] = useState("marianka@gmail.com");
   const [password, setPassword] = useState("greatsecret");
-  const [logInMessage, setLogInMessage] = useState('')
+  const [logInMessage, setLogInMessage] = useState('');
 
   async function handleSignUp() {
     const data = await saveUser();
