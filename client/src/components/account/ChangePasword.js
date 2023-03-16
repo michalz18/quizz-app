@@ -29,6 +29,8 @@ export default function ChangePasswordFrom() {
       }),
     });
 
+    
+
     if (response.ok) {
       setModalContent("Password has been successfully changed!");
       setModalVisible(true);
