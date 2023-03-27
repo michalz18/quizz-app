@@ -6,12 +6,7 @@ const quizSchema = new Schema({
 	questions: [
 		{
 			question: String,
-			answers: [
-				{
-					answer: String,
-					isCorrect: Boolean,
-				},
-			],
+			answers: [{ answer: String, isCorrect: Boolean }],
 		},
 	],
 })

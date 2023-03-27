@@ -54,7 +54,6 @@ function App() {
 
 	useEffect(() => {
 		const newChoices = [...contentChoices]
-		//todo przerzucić to do funkcji
 		newChoices.forEach(choice => (choice.active = false))
 		newChoices.find(choice => choice.element === content).active = true
 		setContentChoices(newChoices)
