@@ -16,19 +16,7 @@ export default function ChangePasswordFrom({ loggedUser }) {
       setModalVisible(true);
       return;
     }
-    //przerzucić to do funkcji
-    const response = await fetch("http://localhost:8080/user", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({
-        email: loggedUser.email,
-        oldPassword: loggedUser.password,
-        newPassword: newPassword,
-      }),
-    });
-
-    
-
+    const response = await savePassword( newPassword, prevPassword);
     if (response.ok) {
       setModalContent("Password has been successfully changed!");
       setModalVisible(true);
@@ -42,6 +30,18 @@ export default function ChangePasswordFrom({ loggedUser }) {
     setModalVisible(false);
     setModalContent("");
   };
+
+  async function savePassword( newPassword, prevPassword) {
+    return await fetch("http://localhost:8080/password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: loggedUser,
+        oldPassword: prevPassword,
+        newPassword: newPassword,
+      }),
+    });
+  }
 
   return (
     <>

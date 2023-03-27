@@ -14,20 +14,16 @@ function LoginForm({ loggUser }) {
 
   async function handleSignUp() {
     const data = await saveUser();
-    if (data.length === 0) {
-     setLogInMessage(loginTakenMessage);
-    } else {
-     loggUser(data.email); 
-    }  
+    data.length === 0
+    ? setLogInMessage(loginTakenMessage)
+    : loggUser(data.email); 
   }
 
   async function handleLogIn() {
     const data = await getUser();
-    if (data.length === 0) {
-     setLogInMessage(noUserMessage);
-    } else {
-     loggUser(data.email); 
-    }  
+    data.length === 0 
+    ? setLogInMessage(noUserMessage)
+    : loggUser(data.email)
   }
 
 	async function saveUser() {
