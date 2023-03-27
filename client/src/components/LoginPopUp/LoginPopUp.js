@@ -7,9 +7,9 @@ function LoginPopUp({open, close, loggUser}) {
         <PureModal style={{with: '100vh'}}
         shouldCloseOnEsc = {true}
         isOpen={open}
-        onClose={close}
+        close={close}
     >
-        <LoginForm loggUser={loggUser}></LoginForm>
+        <LoginForm loggUser={loggUser} close={close}></LoginForm>
     </PureModal>
     );
 }

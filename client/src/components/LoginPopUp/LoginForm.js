@@ -7,7 +7,7 @@ const noUserMessage =
 const loginTakenMessage =
 	"Sorry, but there is allready an account using that email."
 
-function LoginForm({ loggUser }) {
+function LoginForm({ loggUser, close }) {
 	const [email, setEmail] = useState("marianka@gmail.com")
 	const [password, setPassword] = useState("greatsecret")
 	const [logInMessage, setLogInMessage] = useState("")
@@ -16,14 +16,14 @@ function LoginForm({ loggUser }) {
     const data = await saveUser();
     data.length === 0
     ? setLogInMessage(loginTakenMessage)
-    : loggUser(data.email); 
+    : loggUser(data.email), close(); 
   }
 
   async function handleLogIn() {
     const data = await getUser();
     data.length === 0 
     ? setLogInMessage(noUserMessage)
-    : loggUser(data.email)
+    : loggUser(data.email), close();
   }
 
 	async function saveUser() {

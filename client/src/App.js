@@ -58,6 +58,7 @@ function App() {
 
   const closeModal = () => {
     setModal(false);
+    onClose();
   };
 
   const openModal = () => {
@@ -76,6 +77,7 @@ function App() {
           openModal={openModal}
           onLogoClick={() => changePage("Home")}
           changePage={changePage}
+
         />
         <div id="content">
           {content}
