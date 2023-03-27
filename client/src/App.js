@@ -59,7 +59,6 @@ function App() {
 
  const closeModal = () => {
    setModal(false);
-   onClose();
  };
 
  const openModal = () => {
