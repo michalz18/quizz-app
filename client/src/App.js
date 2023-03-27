@@ -8,6 +8,7 @@ import How from "./components/how/How";
 import Scoreboard from "./components/account/Scoreboard";
 import ChangePassword from "./components/account/ChangePasword";
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
+import AddQuizForm from "./components/AddQuizzForm/AddQuizzForm";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState("");
@@ -22,7 +23,8 @@ function App() {
   useEffect(() => {
     setContentChoices([...contentChoices, 
       { element: <Scoreboard />, text: "Scoreboard", active: false },
-      { element: <ChangePassword loggedUser={loggedUser}/>, text: "Change password", active: false }
+      { element: <ChangePassword loggedUser={loggedUser}/>, text: "Change password", active: false },
+      // { element: <AddQuizForm />, text: "Add new quizz", active: false }
     ])
   }, [loggedUser]) 
 // todo zmienić na zmienną
@@ -44,7 +46,7 @@ function App() {
 
   function findContent() {
     const text = sessionStorage.getItem("currentContent");
-    return contentChoices.find((choice) => (text === null) ? choice.active : choice.text === text).element;
+    return contentChoices.find((choice) => (text === null) ? choice.active :  choice.text === text).element;
   }
 
   function changePage(text) {
@@ -68,6 +70,7 @@ function App() {
       <Header menuChoices={menuChoices} openModal={openModal} onLogoClick={() => changePage('Home')} changePage={changePage} loggedUser={loggedUser}/>
       <div id="content">{content}
       <LoginPopUp open={modal} close={closeModal} loggUser={loggUser}/>
+      <AddQuizForm />
       </div>
 
     </div>
