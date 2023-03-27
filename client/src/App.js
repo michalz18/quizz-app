@@ -8,28 +8,23 @@ import How from "./components/how/How";
 import Scoreboard from "./components/account/Scoreboard";
 import ChangePassword from "./components/account/ChangePasword";
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
-
+import AddQuizForm from "./components/AddQuizForm/AddQuizForm"
 
 const LoggedUserContext = createContext();
-
 
 export function useLoggedUser() {
  return useContext(LoggedUserContext);
 }
 
-
 function App() {
  const [loggedUser, setLoggedUser] = useState("");
  const [contentChoices, setContentChoices] = useState([
-
-
    { element: <Home goToQuizes={() => changePage("Quizzes")} />, text: "Home", active: true },
    { element: <How goToQuizes={() => changePage("Quizzes")} />, text: "How it works?", active: false },
    { element: <Quizzes />, text: "Quizzes", active: false },
    { element: <About />, text: "About us", active: false },
+   { element: <AddQuizForm />, text: "Add new quiz", active: false },
  ]);
-console.log(loggedUser)
-
 
  useEffect(() => {
    setContentChoices([
@@ -40,16 +35,10 @@ console.log(loggedUser)
    ]);
   }, [loggedUser]);
 
-
  const [menuChoices, setMenuChoices] = useState([contentChoices[1], contentChoices[2], contentChoices[3]]);
-
 
  const [content, setContent] = useState(findContent());
  const [modal, setModal] = useState(false);
-
-
- console.log(loggedUser);
-
 
  useEffect(() => {
    const newChoices = [...contentChoices];
@@ -59,33 +48,27 @@ console.log(loggedUser)
    sessionStorage.setItem("currentContent", contentChoices.find((choice) => choice.active).text);
  }, [content]);
 
-
  function findContent() {
    const text = sessionStorage.getItem("currentContent");
    return contentChoices.find((choice) => (text === null ? choice.active : choice.text === text)).element;
  }
 
-
  function changePage(text) {
    setContent(contentChoices.find((choice) => choice.text === text).element);
  }
-
 
  const closeModal = () => {
    setModal(false);
    onClose();
  };
 
-
  const openModal = () => {
    setModal(true);
  };
 
-
  function loggUser(user) {
    setLoggedUser(user);
  }
-
 
  return (
    <LoggedUserContext.Provider value={{ loggedUser, setLoggedUser }}>
@@ -95,8 +78,6 @@ console.log(loggedUser)
          openModal={openModal}
          onLogoClick={() => changePage("Home")}
          changePage={changePage}
-
-
        />
        <div id="content">
          {content}
@@ -106,6 +87,5 @@ console.log(loggedUser)
    </LoggedUserContext.Provider>
  );
 }
-
 
 export default App;
