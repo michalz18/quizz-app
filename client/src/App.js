@@ -60,7 +60,7 @@ function App() {
   }
 
   function loggUser(user) {
-    setLoggedUser("marianka@gmail.com");
+    setLoggedUser(user);
   }
 
   return (
