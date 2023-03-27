@@ -38,11 +38,21 @@ function AddQuizForm() {
     setQuestions([...questions, { question: "", answers: [{ answer: "", isCorrect: false }, { answer: "", isCorrect: false }, { answer: "", isCorrect: false }, { answer: "", isCorrect: false }] }]);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    // code to create a new quiz in the database with quizName and questions
-    setQuizName("");
-    setQuestions([{ question: "", answers: [{ answer: "", isCorrect: false }, { answer: "", isCorrect: false }, { answer: "", isCorrect: false }, { answer: "", isCorrect: false }] }]);
+    const response = await fetch("http://localhost:8080/quizz", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        title: quizName,
+        questions: questions
+      }),
+    });
+
+    if (response.ok) {
+      setQuizName("");
+      setQuestions([{ question: "", answers: [{ answer: "", isCorrect: false }, { answer: "", isCorrect: false }, { answer: "", isCorrect: false }, { answer: "", isCorrect: false }] }]);
+    }
   };
 
   return (
