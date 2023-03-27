@@ -5,7 +5,7 @@ import './QuizModal.css';
 import Score from './Score';
 
 function QuizModal(props) {
-    const { quiz, setVisible } = props;
+    const { quiz, setVisible, loggedUser } = props;
 
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [score, setScore] = useState([]);
@@ -13,6 +13,7 @@ function QuizModal(props) {
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(-1);
     const [showScore, setShowScore] = useState(false)
     const [points, setPoints] = useState(0);
+    const CURRENT_QUIZ_ID = quiz._id
 
     // Array of buttons to represent the progress
     const progress = [...Array(quiz.questions.length).keys()];
@@ -87,7 +88,7 @@ function QuizModal(props) {
                 )
             ))}
             {showScore && (
-                <Score score={points} onClose={handleCloseScore} setVisible={setVisible} isOpen={showScore} closeSummary={closeSummary} maxPoints={maxPoints} />
+                <Score loggedUser={loggedUser} CURRENT_QUIZ_ID={CURRENT_QUIZ_ID}  score={points} onClose={handleCloseScore} setVisible={setVisible} isOpen={showScore} closeSummary={closeSummary} maxPoints={maxPoints} />
             )}
         </div>
     );

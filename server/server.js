@@ -87,6 +87,38 @@ app.post("/password", async (req, res) => {
   }
 });
 
+app.post("/quizzes/history", async (req, res) => {
+  try {
+    const { CURRENT_QUIZ_ID, score, maxPoints, loggedUser } = req.body;
+
+    const updatedScore = await Account.findOneAndUpdate(
+      { email: loggedUser, "quizes.id": CURRENT_QUIZ_ID },
+      { $set: { "quizes.$.score": score} },
+      { new: true }
+    );
+
+    if (!updatedScore) {
+      const newScore = await Account.findOneAndUpdate(
+        { email: loggedUser },
+        { $addToSet: { quizes: { id: CURRENT_QUIZ_ID, score: score, quizLength: maxPoints } } },
+        { new: true }
+      );
+
+      if (!newScore) {
+        return res.status(404).json({ message: "User not found!" });
+      }
+
+      return res.status(200).json({ message: "New quiz result saved successfully" });
+    }
+
+    res.status(200).json({ message: "Quiz result updated successfully" });
+
+  } catch (error) {
+    res.status(500).json({ message: "ServerError!", error: error.message });
+  }
+});
+
+
 mongoose
   .connect(dbURI)
   .then(() => {

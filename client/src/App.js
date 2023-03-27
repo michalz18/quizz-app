@@ -18,11 +18,13 @@ export function useLoggedUser() {
 function App() {
   const [loggedUser, setLoggedUser] = useState("");
   const [contentChoices, setContentChoices] = useState([
+
     { element: <Home goToQuizes={() => changePage("Quizzes")} />, text: "Home", active: true },
     { element: <How goToQuizes={() => changePage("Quizzes")} />, text: "How it works?", active: false },
-    { element: <Quizzes />, text: "Quizzes", active: false },
+    { element: <Quizzes loggedUser={loggedUser}/>, text: "Quizzes", active: false },
     { element: <About />, text: "About us", active: false },
   ]);
+
 
   useEffect(() => {
     setContentChoices([
