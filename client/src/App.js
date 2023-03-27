@@ -54,8 +54,12 @@ function App() {
  }
 
  function changePage(text) {
-   setContent(contentChoices.find((choice) => choice.text === text).element);
- }
+  if (text === "Quizzes" && !loggedUser) {
+    setModal(true);
+  } else {
+    setContent(contentChoices.find((choice) => choice.text === text).element);
+  }
+}
 
  const closeModal = () => {
    setModal(false);
