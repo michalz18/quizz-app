@@ -17,12 +17,15 @@ function App() {
     { element: <Quizzes/>, text: "Quizzes", active: false },
     { element: <About />, text: "About us", active: false },
   ]);
+
+  //
   useEffect(() => {
     setContentChoices([...contentChoices, 
       { element: <Scoreboard />, text: "Scoreboard", active: false },
       { element: <ChangePassword loggedUser={loggedUser}/>, text: "Change password", active: false }
     ])
-  }, [loggedUser])
+  }, [loggedUser]) 
+// todo zmienić na zmienną
   const [menuChoices, setMenuChoices] = useState([contentChoices[1], contentChoices[2], contentChoices[3]]);
 
   const [content, setContent] = useState(findContent());
@@ -32,6 +35,7 @@ function App() {
   
   useEffect(()=> {
     const newChoices = [...contentChoices];
+    //todo przerzucić to do funkcji
     newChoices.forEach((choice) => (choice.active = false));
     newChoices.find((choice) => choice.element === content).active = true;
     setContentChoices(newChoices);

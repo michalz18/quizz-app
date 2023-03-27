@@ -3,7 +3,7 @@ import 'react-pure-modal/dist/react-pure-modal.min.css';
 import './Score.css'
 function Score(props) {
 
-    const { score, onClose, closeSummary } = props
+    const { score, closeSummary, maxPoints } = props
 
     return (
         <div className='container'>
@@ -14,7 +14,7 @@ function Score(props) {
             >
                 <div className="modal-content">
                     <div className="score-circle">
-                        <h2>Your score: {score} / 10</h2>
+                        <h2>Your score: {score} / {maxPoints}</h2>
                         <button onClick={() => closeSummary(false)}>Hurrah</button>
                     </div>
                 </div>

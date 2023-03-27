@@ -1,6 +1,6 @@
 import React from "react"
 import "./Home.css"
-import img from "./home.jpg"
+import img from "./home.png"
 
 export default function Home({ goToQuizes }) {
 	return (
