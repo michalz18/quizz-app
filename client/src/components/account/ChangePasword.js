@@ -16,7 +16,7 @@ export default function ChangePasswordFrom({ loggedUser }) {
       setModalVisible(true);
       return;
     }
-
+    //przerzucić to do funkcji
     const response = await fetch("http://localhost:8080/user", {
       method: "POST",
       headers: {"Content-Type": "application/json"},

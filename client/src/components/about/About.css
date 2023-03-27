@@ -18,11 +18,11 @@
     padding-right: 25px;
     flex: 1;
     text-align: left;
-    font-family: Poppins, sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .text{
-    color:rgb(108, 108, 108);
+    color: var(--color-lightgray);
 }
 
 @media (max-width: 768px) {

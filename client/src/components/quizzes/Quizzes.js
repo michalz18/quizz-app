@@ -25,7 +25,7 @@ function Quizzes() {
 
     console.log(quizzes)
 
-    function handleClick(quiz) {
+    function handleClick(quiz) { //zmienić nazwę funkcji na funkcjonalnność jaką wykonuje
         setSelectedQuiz(quiz);
         setIsModalOpen(true);
         console.log(isModalOpen)

@@ -3,7 +3,7 @@ import 'react-pure-modal/dist/react-pure-modal.min.css';
 import './Score.css'
 function Score(props) {
 
-    const { score, onClose, closeSummary, maxPoints } = props
+    const { score, closeSummary, maxPoints } = props
 
     return (
         <div className='container'>
