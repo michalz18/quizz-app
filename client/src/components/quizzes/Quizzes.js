@@ -3,12 +3,12 @@ import QuizModal from './QuizModal';
 import './Quizzes.css'
 
 function Quizzes(props) {
-    const {loggedUser} = props;
+   
     const [selestedQuiz, setSelectedQuiz] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [quizzesVisible, setQuizzesVisible] = useState(true)
     const [quizzes, setQuizzes] = useState([])
-console.log(loggedUser)
+
     const getQuizzes = async () => {
         const response = await fetch('http://localhost:8080/quizzes')
         if (!response.ok) {
@@ -48,7 +48,7 @@ console.log(loggedUser)
             ))}
 
             {selestedQuiz && (
-                <QuizModal loggedUser={loggedUser} quiz={selestedQuiz} isModalOpen={isModalOpen} onClose={handleCloseModal} setVisible={setVisible}></QuizModal>
+                <QuizModal  quiz={selestedQuiz} isModalOpen={isModalOpen} onClose={handleCloseModal} setVisible={setVisible}></QuizModal>
             )}
         </div>
     )

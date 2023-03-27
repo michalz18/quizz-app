@@ -1,10 +1,12 @@
 import PureModal from 'react-pure-modal';
 import 'react-pure-modal/dist/react-pure-modal.min.css';
 import './Score.css'
+import { useLoggedUser } from '../../App';
+
 function Score(props) {
 
-    const { score, closeSummary, maxPoints, CURRENT_QUIZ_ID, loggedUser } = props
-console.log(loggedUser)
+    const { score, closeSummary, maxPoints, CURRENT_QUIZ_ID, } = props
+    const {loggedUser} = useLoggedUser()
   
     const submitScore = async () => {
         const response = await fetch("http://localhost:8080/quizzes/history", {

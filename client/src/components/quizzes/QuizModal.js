@@ -5,7 +5,7 @@ import './QuizModal.css';
 import Score from './Score';
 
 function QuizModal(props) {
-    const { quiz, setVisible, loggedUser } = props;
+    const { quiz, setVisible } = props;
 
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [score, setScore] = useState([]);
@@ -88,7 +88,7 @@ function QuizModal(props) {
                 )
             ))}
             {showScore && (
-                <Score loggedUser={loggedUser} CURRENT_QUIZ_ID={CURRENT_QUIZ_ID}  score={points} onClose={handleCloseScore} setVisible={setVisible} isOpen={showScore} closeSummary={closeSummary} maxPoints={maxPoints} />
+                <Score  CURRENT_QUIZ_ID={CURRENT_QUIZ_ID}  score={points} onClose={handleCloseScore} setVisible={setVisible} isOpen={showScore} closeSummary={closeSummary} maxPoints={maxPoints} />
             )}
         </div>
     );
