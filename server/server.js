@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const dbURI = require("./mongodbkey");
 const Quiz = require("./models/quiz");
 const Account = require("./models/account");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 const app = express();
 
@@ -11,37 +13,48 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/quizzes", async (req, res) => {
-    try {
-        const response = await Quiz.find()
-        res.status(200).json(response)
-    } catch (error) {
-        res.status(500).json({ message: 'ServerError!', error: error.message })
-    }
+  try {
+    const response = await Quiz.find();
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ message: "ServerError!", error: error.message });
+  }
 });
 
 app.post("/login", async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        const response = await Account.find({"email": email, "password": password});
-        res.status(200).json(response);
-    } catch (error) {
-        res.status(500).json({ message: 'ServerError!', error: error.message })
-    }
+  try {
+    const { email, password } = req.body;
+    const user = await Account.findOne({ email: email });
+    bcrypt.compare(password, user.password, function (err, result) {
+      if (err) {
+        res.status().json([])
+      }
+      res.status(200).json(result ? user : []);
+    });
+  } catch (error) {
+    res.status(500).json({ message: "ServerError!", error: error.message });
+  }
 });
 
 app.post("/signup", async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        const emailResponse = await Account.find({"email": email});
-        if (emailResponse.length != 0) {
-            res.status(200).json([]);
-            return;
-        } 
-        const response = await Account.create({"email": email, "password": password});
-        res.status(200).json(response);
-    } catch (error) {
-        res.status(500).json({ message: 'ServerError!', error: error.message })
+  try {
+    const { email, password } = req.body;
+    const emailResponse = await Account.find({ email: email });
+    if (emailResponse.length != 0) {
+      res.status(200).json([]);
+      return;
     }
+    bcrypt.hash(password, saltRounds, async function (err, hash) {
+      if (err) {
+        console.log(err);
+        res.status(200).json([]);
+      }
+      const response = await Account.create({ email: email, password: hash });
+      res.status(200).json(response);
+    });
+  } catch (error) {
+    res.status(500).json({ message: "ServerError!", error: error.message });
+  }
 });
 
 app.post("/user", async (req, res) => {

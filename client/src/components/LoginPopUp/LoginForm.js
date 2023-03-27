@@ -14,7 +14,7 @@ function LoginForm({loggUser}) {
     if (data.length === 0) {
      setLogInMessage(loginTakenMessage);
     } else {
-     loggUser(data[0]); 
+     loggUser(data.email); 
     }  
   }
 
@@ -23,7 +23,7 @@ function LoginForm({loggUser}) {
     if (data.length === 0) {
      setLogInMessage(noUserMessage);
     } else {
-     loggUser(data[0]); 
+     loggUser(data.email); 
     }  
   }
 
