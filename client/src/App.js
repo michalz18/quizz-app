@@ -10,7 +10,7 @@ import ChangePassword from "./components/account/ChangePasword";
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
 
 function App() {
-  const [loggedUser, setLoggedUser] = useState({});
+  const [loggedUser, setLoggedUser] = useState("");
   const [contentChoices, setContentChoices] = useState([
     { element: <Home goToQuizes={() => changePage('Quizzes')}/>, text: "Home", active: true},
     { element: <How goToQuizes={() => changePage('Quizzes')}/>, text: "How it works?", active: false },
@@ -60,7 +60,7 @@ function App() {
   }
 
   function loggUser(user) {
-    setLoggedUser(user);
+    setLoggedUser("marianka@gmail.com");
   }
 
   return (

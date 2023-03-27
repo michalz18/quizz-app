@@ -31,7 +31,7 @@ function Header({ menuChoices, changePage, onLogoClick, openModal, loggedUser })
           <img id="bar-icon" src="/menu.png" alt="menu-icon"></img>
         </div>
       </div>
-      {loggedUser.email === undefined 
+      {loggedUser.length === 0
         ? <button id="login" onClick={openModal}>LOGIN</button>
         : <DropdownMenu changePage={changePage}/>
         }
