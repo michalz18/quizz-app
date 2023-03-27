@@ -9,7 +9,7 @@ import Scoreboard from "./components/account/Scoreboard"
 import ChangePassword from "./components/account/ChangePasword"
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp"
 import AddQuizForm from "./components/AddQuizForm/AddQuizForm"
-
+// to delete
 function App() {
 	const [loggedUser, setLoggedUser] = useState("")
 	const [contentChoices, setContentChoices] = useState([

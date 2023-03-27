@@ -6,7 +6,7 @@ const Quiz = require("./models/quiz")
 const Account = require("./models/account")
 const bcrypt = require("bcrypt")
 const saltRounds = 10
-
+// to delete
 const app = express()
 
 app.use(cors())
