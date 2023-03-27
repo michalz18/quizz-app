@@ -48,6 +48,8 @@ function QuizModal(props) {
         setVisible(true)
     }
 
+
+    
     return (
         <div className='question-container'>
             {quiz.questions.map((question, index) => (
