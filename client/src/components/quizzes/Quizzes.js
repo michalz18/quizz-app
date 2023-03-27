@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import QuizModal from './QuizModal';
 import './Quizzes.css'
 
-function Quizzes() {
-
+function Quizzes(props) {
+   
     const [selestedQuiz, setSelectedQuiz] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [quizzesVisible, setQuizzesVisible] = useState(true)
@@ -48,7 +48,7 @@ function Quizzes() {
             ))}
 
             {selestedQuiz && (
-                <QuizModal quiz={selestedQuiz} isModalOpen={isModalOpen} onClose={handleCloseModal} setVisible={setVisible}></QuizModal>
+                <QuizModal  quiz={selestedQuiz} isModalOpen={isModalOpen} onClose={handleCloseModal} setVisible={setVisible}></QuizModal>
             )}
         </div>
     )
