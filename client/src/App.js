@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import "./App.css";
 import Header from "./components/header/Header";
 import Home from "./components/Home/Home";
 import About from "./components/about/About";
@@ -9,6 +8,7 @@ import Scoreboard from "./components/account/Scoreboard";
 import ChangePassword from "./components/account/ChangePasword";
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
 import AddQuizForm from "./components/AddQuizForm/AddQuizForm"
+import "./App.css";
 
 const LoggedUserContext = createContext();
 
