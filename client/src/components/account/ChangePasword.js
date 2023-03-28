@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import PureModal from "react-pure-modal";
 import "./ChangePassword.css";
+import { useLoggedUser } from "../../App";
 
-export default function ChangePasswordFrom({ loggedUser }) {
+export default function ChangePasswordFrom() {
   const [prevPassword, setPrevPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState("");
+  const { loggedUser } = useLoggedUser();
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -1,25 +1,25 @@
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const dbURI = require("./mongodbkey");
-const Quiz = require("./models/quiz");
-const Account = require("./models/account");
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
+const express = require("express")
+const cors = require("cors")
+const mongoose = require("mongoose")
+const dbURI = require("./mongodbkey")
+const Quiz = require("./models/quiz")
+const Account = require("./models/account")
+const bcrypt = require("bcrypt")
+const saltRounds = 10
+// to delete
+const app = express()
 
-const app = express();
-
-app.use(cors());
-app.use(express.json());
+app.use(cors())
+app.use(express.json())
 
 app.get("/quizzes", async (req, res) => {
-  try {
-    const response = await Quiz.find();
-    res.status(200).json(response);
-  } catch (error) {
-    res.status(500).json({ message: "ServerError!", error: error.message });
-  }
-});
+	try {
+		const response = await Quiz.find()
+		res.status(200).json(response)
+	} catch (error) {
+		res.status(500).json({ message: "ServerError!", error: error.message })
+	}
+})
 
 app.post("/login", async (req, res) => {
   try {
@@ -118,16 +118,27 @@ app.post("/quizzes/history", async (req, res) => {
   }
 });
 
+app.post("/quiz-add", async (req, res) => {
+	try {
+		const quiz = new Quiz(req.body)
+		await quiz.save()
+		res.status(201).json({ message: "Quiz created successfully" })
+	} catch (error) {
+		res
+			.status(400)
+			.json({ message: "Quiz creation failed", error: error.message })
+	}
+})
 
 mongoose
-  .connect(dbURI)
-  .then(() => {
-    console.log("Connected to Database!");
-  })
-  .catch((error) => {
-    console.log("Unable to connect to Database:", error);
-  });
+	.connect(dbURI)
+	.then(() => {
+		console.log("Connected to Database!")
+	})
+	.catch(error => {
+		console.log("Unable to connect to Database:", error)
+	})
 
 app.listen(8080, () => {
-  console.log("Server started on port 8080");
-});
+	console.log("Server started on port 8080")
+})

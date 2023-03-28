@@ -3,6 +3,7 @@ import "./DropdownMenu.css";
 import { useLoggedUser } from "../../App";
 
 export default function AccountDropdown({ changePage }) {
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { loggedUser, setLoggedUser } = useLoggedUser();
 
@@ -27,6 +28,9 @@ export default function AccountDropdown({ changePage }) {
           <li onClick={() => handleOptionClick("Scoreboard")}>
             Your Scoreboard
           </li>
+          <li onClick={() => handleOptionClick("Add new quiz")}>
+						Add new quiz
+					</li>
           <li
             onClick={() => {
               handleOptionClick("Home");
@@ -39,4 +43,5 @@ export default function AccountDropdown({ changePage }) {
       )}
     </div>
   );
+
 }
