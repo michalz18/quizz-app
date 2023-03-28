@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const dbURI = require("./mongodbkey")
 const Quiz = require("./models/quiz")
 const Account = require("./models/account")
+const Feedback = require("./models/feedback");
 const bcrypt = require("bcrypt")
 const saltRounds = 10
 // to delete
@@ -150,6 +151,19 @@ app.get("/score/:email", async (req, res) => {
     res.status(500).json({ message: "ServerError!", error: error.message });
   }
 });
+
+app.post("/feedback", async (req, res) => {
+  try {
+    const { user, feedbackText, feedbackRate } = req.body;
+    const feedback = await Feedback.create({ user, feedbackText, feedbackRate });
+    
+    res.status(201).json({ message: "Feedback created successfully", feedback });
+  } catch (error) {
+    res.status(400).json({ message: "Feedback creation failed", error: error.message });
+  }
+});
+
+
 
 mongoose
 	.connect(dbURI)

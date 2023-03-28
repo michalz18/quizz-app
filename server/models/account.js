@@ -4,7 +4,7 @@ const { Schema, model } = mongoose;
 const accountSchema = new Schema({
   email: String,
   password: String,
-  quizes: Array
+  quizes: Array,
 });
 
 const Account = model("Account", accountSchema);
