@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PureModal from 'react-pure-modal';
 import 'react-pure-modal/dist/react-pure-modal.min.css';
 import './QuizModal.css';
@@ -13,25 +13,54 @@ function QuizModal(props) {
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(-1);
     const [showScore, setShowScore] = useState(false)
     const [points, setPoints] = useState(0);
-    const CURRENT_QUIZ_ID = quiz._id
+    const CURRENT_QUIZ_ID = quiz._id;
+    const [timeLeft, setTimeLeft] = useState(10);
+    
 
-    // Array of buttons to represent the progress
+    useEffect(() => {
+        setTimeLeft(10);
+      }, [currentQuestionIndex]);
+
+
+      let timer = null
+      useEffect(() => {
+         timer  = setInterval(() => {
+          setTimeLeft(timeLeft - 1);
+        }, 1000);
+      
+        if (timeLeft === 0) {
+            triggerAnswer()
+            clearInterval(timer);
+           
+        }
+      
+        return () => clearInterval(timer);
+      }, [timeLeft]);
+
+      function triggerAnswer (){
+        setDisableBtn(!disableBtn)
+        setSelectedAnswerIndex(-1)
+
+      }
+
     const progress = [...Array(quiz.questions.length).keys()];
     const maxPoints = progress.length
     console.log(progress.length)
 
     function handleNextQuestion() {
+        setTimeLeft(10);
         setCurrentQuestionIndex(currentQuestionIndex + 1);
         setDisableBtn(!disableBtn)
         setSelectedAnswerIndex(-1)
     }
 
     function checkAnswer(answer, answerIndex) {
-        setScore(score.concat(answer.isCorrect))
+        clearInterval(timer);
         setDisableBtn(!disableBtn)
         setSelectedAnswerIndex(answerIndex);
-
+        answer.isCorrect && timeLeft > 0 ?  setScore(score.concat(true)) : setScore(score.concat(false));
     }
+
 
     function getFinalScore() {
         setShowScore(true)
@@ -48,6 +77,8 @@ function QuizModal(props) {
         setVisible(true)
     }
 
+
+    
     return (
         <div className='question-container'>
             {quiz.questions.map((question, index) => (
@@ -61,6 +92,7 @@ function QuizModal(props) {
                                 } key={answerIndex} onClick={() => checkAnswer(answer, answerIndex)} disabled={!disableBtn} >{answer.answer}</button>
 
                             ))}
+                             <div>Time left: {timeLeft}</div>
                         </div>
                         {currentQuestionIndex < quiz.questions.length - 1
                             ? (
