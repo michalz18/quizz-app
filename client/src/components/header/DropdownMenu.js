@@ -19,7 +19,7 @@ export default function AccountDropdown({ changePage }) {
 
   return (
     <div className="account-dropdown">
-      <button onClick={toggleMenu}>Hello, {loggedUser.split("@")[0]}</button>
+      <button onClick={toggleMenu}>Hello, {loggedUser.split("@")[0]}!</button>
       {isMenuOpen && (
         <ul className="dropdown-menu">
           <li onClick={() => handleOptionClick("Change password")}>
