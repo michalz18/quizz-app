@@ -68,6 +68,10 @@ function LoginForm({ loggUser }) {
 		setPassword(event.target.value)
 	}
 
+  const logWithGoogle = () => {
+    window.open("http://localhost:8080/auth/google", "_self");
+  };
+
 	return (
 		<>
 			<div id='login-form'>
@@ -117,7 +121,7 @@ function LoginForm({ loggUser }) {
 					</div>
 					<div id='google-login-wrapper'>
 						<div className='google-text'>Or login with </div>
-						<div id='google'>Google</div>
+						<div id='google' onClick={logWithGoogle}>Google</div>
 					</div>
 					<div id='login-submit-btns'>
 						<button className='login' onClick={handleLogIn}>

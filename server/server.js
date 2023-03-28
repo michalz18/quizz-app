@@ -5,12 +5,27 @@ const dbURI = require("./mongodbkey");
 const Quiz = require("./models/quiz");
 const Account = require("./models/account");
 const bcrypt = require("bcrypt");
+const passportSetUp = require("./passport.js");
+const passport = require('passport');
+const cookieSession = require("cookie-session");
 const saltRounds = 10;
-
 const app = express();
 
-app.use(cors());
 app.use(express.json());
+app.use(cookieSession({
+  name: "session",
+  keys:["quizApp"],
+  maxAge: 24*60*60*100
+}))
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(cors());
+
+app.get("/auth/google", passport.authenticate("google", {scope:["profile"]}))
+app.get("/auth/google/callback", passport.authenticate("google", {
+  successRedirect: "http://localhost:3000/",
+  failureRedirect:""
+}))
 
 app.get("/quizzes", async (req, res) => {
   try {
