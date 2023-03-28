@@ -105,3 +105,25 @@
   cursor: not-allowed;
   border: 7px solid grey;
 }
+.question-container .time-left {
+  animation: pulse 1s infinite;
+  font-size: 2rem;
+  color: #FCC822;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.question-container .time-left-left{
+  font-size: 2rem;
+  color:red;
+}

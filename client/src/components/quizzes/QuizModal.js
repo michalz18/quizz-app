@@ -24,6 +24,7 @@ function QuizModal(props) {
 
       let timer = null
       useEffect(() => {
+        clearInterval(timer)
          timer  = setInterval(() => {
           setTimeLeft(timeLeft - 1);
         }, 1000);
@@ -92,7 +93,7 @@ function QuizModal(props) {
                                 } key={answerIndex} onClick={() => checkAnswer(answer, answerIndex)} disabled={!disableBtn} >{answer.answer}</button>
 
                             ))}
-                             <div>Time left: {timeLeft}</div>
+                             <div className={timeLeft===0 ? 'time-left-left' : 'time-left'}>Time left: {timeLeft}</div>
                         </div>
                         {currentQuestionIndex < quiz.questions.length - 1
                             ? (
