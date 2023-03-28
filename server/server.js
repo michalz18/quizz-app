@@ -128,7 +128,28 @@ app.post("/quiz-add", async (req, res) => {
 			.status(400)
 			.json({ message: "Quiz creation failed", error: error.message })
 	}
-})
+});
+
+app.get("/score/:email", async (req, res) => {
+  try {
+    const email = req.params.email;
+    const user = await Account.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const quizIds = user.quizes.map((quiz) => quiz.id);
+    const quizzes = await Quiz.find({ _id: { $in: quizIds } });
+    const scores = quizzes.map((quiz) => ({
+      id: quiz._id,
+      title: quiz.title,
+      score: user.quizes.find((q) => q.id.toString() === quiz._id.toString())
+        .score,
+    }));
+    res.status(200).json(scores);
+  } catch (error) {
+    res.status(500).json({ message: "ServerError!", error: error.message });
+  }
+});
 
 mongoose
 	.connect(dbURI)

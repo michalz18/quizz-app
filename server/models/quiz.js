@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const { Schema, model } = mongoose
-// to delete
+
 const quizSchema = new Schema({
 	title: String,
 	questions: [

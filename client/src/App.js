@@ -29,7 +29,7 @@ function App() {
  useEffect(() => {
    setContentChoices([
      ...contentChoices,
-     { element: <Scoreboard />, text: "Scoreboard", active: false },
+     { element: <Scoreboard changePage={changePage} />, text: "Scoreboard", active: false },
      { element: <ChangePassword />, text: "Change password", active: false },
    
    ]);
