@@ -21,6 +21,11 @@ export default function AccountDropdown({ changePage }) {
     }
   }
 
+  function handleFeedbackSubmit() {
+    setLoggedUser("");
+    changePage("Home");
+  }
+
   return (
     <>
       <div className="account-dropdown">
@@ -43,11 +48,11 @@ export default function AccountDropdown({ changePage }) {
       {showFeedback && (
         <Feedback
           isOpen={true}
-          onClose={() => setShowFeedback(false)}
-          onSubmit={() => {
+          onClose={() => {
+            setShowFeedback(false);
             setLoggedUser("");
-            changePage("Home");
           }}
+          onSubmit={() => handleFeedbackSubmit()}
           loggedUser={loggedUser}
         />
       )}
