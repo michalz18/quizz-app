@@ -32,5 +32,18 @@
       font-size: 1rem;
       padding: 10px;
     }
-  }
+    .button-container h2{
+      width: 100%;
+      font-size: 2rem;
+      padding: 10px;
+    }
+
+    .button-container .progress-btn {
+      display: none;
+    }
   
+    /* .button-container .progress-btn:nth-child(i + 1) {
+      display: inline-block;
+      margin-top: 20px;
+    } */
+  }

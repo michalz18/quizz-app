@@ -1,3 +1,8 @@
+:root {
+  --current-index: 0;
+  --current-question-index:0;
+}
+
 .button-container .question-container button{
   
   flex-direction: column;
@@ -126,4 +131,58 @@
 .question-container .time-left-left{
   font-size: 2rem;
   color:red;
+}
+
+@media (max-width: 600px) {
+  .button-container {
+    flex-direction: column;
+  }
+
+  .button-container button {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    padding: 10px;
+  }
+  .button-container h2{
+    width: 100%;
+    font-size: 2rem;
+    padding: 10px;
+  }
+
+  .button-container .progress-btn{
+    display: none;
+  }
+
+  .button-container .progress-btn-progress-btn {
+    display: inline-block;
+    margin-top: 20px;
+  
+    height: 5px;
+    width: 5px;
+    padding: 10px;
+    margin: 30px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 7px solid #FCC822;
+    background-color: white;
+    color: #000;
+}
+ 
+}
+.button-container .progress-btn-progress-btn {
+  display: inline-block;
+  margin-top: 20px;
+
+  height: 5px;
+  width: 5px;
+  padding: 10px;
+  margin: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 7px solid #FCC822;
+  background-color: white;
+  color: #000;
 }
