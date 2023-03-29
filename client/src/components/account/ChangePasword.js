@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PureModal from "react-pure-modal";
 import "./ChangePassword.css";
 import { useLoggedUser } from "../../App";
+import validationMethods from "../../validationMethods"
 
 export default function ChangePasswordFrom() {
   const [prevPassword, setPrevPassword] = useState("");
@@ -13,12 +14,20 @@ export default function ChangePasswordFrom() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+  
+    const newPasswordError = validationMethods.validatePassword(newPassword);
+    if (newPasswordError) {
+      setModalContent(newPasswordError);
+      setModalVisible(true);
+      return;
+    }
+  
     if (newPassword !== confirmNewPassword) {
       setModalContent("Passwords do not match!");
       setModalVisible(true);
       return;
     }
-    const response = await savePassword( newPassword, prevPassword);
+    const response = await savePassword(newPassword, prevPassword);
     if (response.ok) {
       setModalContent("Password has been successfully changed!");
       setModalVisible(true);
