@@ -38,7 +38,7 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    background-color:#ffcd2e;
+    background-color:#FCC822;
     opacity: 1;
     border-radius: 50%;
     
@@ -60,4 +60,18 @@
 .container .pure-modal .panel-body {
     padding: 0px;
     
+}
+
+@media (max-width: 600px) {
+    .container .pure-modal .panel-body {
+        padding: 40px;
+    }
+    .container .pure-modal .panel-body button{
+    width: 70%;
+    
+    }
+    .button-container .score-circle h2 {
+        margin-bottom: -20px;
+    }
+
 }

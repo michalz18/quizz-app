@@ -101,7 +101,7 @@ function QuizModal(props) {
                                     <button className='next-btn' onClick={handleNextQuestion} disabled={disableBtn}>Next</button>
                                     <div>
                                     {progress.map((p, i) => (
-                                        <button key={i} className="progress-btn" disabled={i > currentQuestionIndex}>{p + 1}</button>
+                                        <button key={i} className={currentQuestionIndex === p ?  'progress-btn-progress-btn': 'progress-btn'} disabled={i > currentQuestionIndex}>{p + 1}</button>
                                     ))}
                                     </div>
                                 </>
@@ -111,7 +111,7 @@ function QuizModal(props) {
                                     <div>
                                     {progress.map((p, i) => (
                                         
-                                        <button key={i} className="progress-btn" disabled={i > currentQuestionIndex}>{p + 1}</button>
+                                        <button key={i} className={currentQuestionIndex === p ?  'progress-btn-progress-btn': 'progress-btn'} disabled={i > currentQuestionIndex}>{p + 1}</button>
                                     ))}
                                     </div>
                                 </>
