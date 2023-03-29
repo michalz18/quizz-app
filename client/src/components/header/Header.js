@@ -5,14 +5,9 @@ import logo from "./logo.jpg";
 import DropdownMenu from "./DropdownMenu";
 import { useLoggedUser } from "../../App";
 
-function Header({ menuChoices, changePage, onLogoClick, openModal }) {
+function Header({ menuChoices, changePage, onLogoClick, openModal, dropdownChoices }) {
   const { loggedUser } = useLoggedUser();
-  const [choices, setChoices] = useState([]);
-
-  useEffect(() => {
-    setChoices(menuChoices.filter((choice) => choice.text !== "Home"));
-  }, []);
-
+  
   return (
     <div id="header">
       <div id="logo-and-name-wrapper" onClick={onLogoClick}>
@@ -26,7 +21,7 @@ function Header({ menuChoices, changePage, onLogoClick, openModal }) {
       <div id="navigation">
         <div id="navbar-wrapper">
           <div id="navbar">
-            {choices.map((menuChoice, index) => (
+            {menuChoices.map((menuChoice, index) => (
               <MenuChoice key={index} menuChoice={menuChoice} changePage={changePage} />
             ))}
           </div>
@@ -40,7 +35,7 @@ function Header({ menuChoices, changePage, onLogoClick, openModal }) {
           LOGIN
         </button>
       ) : (
-        <DropdownMenu changePage={changePage} />
+        <DropdownMenu changePage={changePage} dropdownChoices={dropdownChoices}/>
       )}
     </div>
   );
