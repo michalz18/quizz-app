@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "./DropdownMenu.css";
 import { useLoggedUser } from "../../App";
+import Feedback from "../feedback/Feedback";
 
 export default function AccountDropdown({ changePage }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
   const { loggedUser, setLoggedUser } = useLoggedUser();
 
   function toggleMenu() {
@@ -11,32 +13,49 @@ export default function AccountDropdown({ changePage }) {
   }
 
   function handleOptionClick(option) {
-    console.log(option);
     setIsMenuOpen(false);
-    changePage(option);
+    if (option === "Logout") {
+      setShowFeedback(true);
+    } else {
+      changePage(option);
+    }
+  }
+
+  function handleFeedbackSubmit() {
+    setLoggedUser("");
+    changePage("Home");
   }
 
   return (
-    <div className="account-dropdown">
-      <button onClick={toggleMenu}>Hello, {loggedUser.split("@")[0]}</button>
-      {isMenuOpen && (
-        <ul className="dropdown-menu">
-          <li onClick={() => handleOptionClick("Change password")}>
-            Change Password
-          </li>
-          <li onClick={() => handleOptionClick("Scoreboard")}>
-            Your Scoreboard
-          </li>
-          <li
-            onClick={() => {
-              handleOptionClick("Home");
-              setLoggedUser("");
-            }}
-          >
-            Logout
-          </li>
-        </ul>
+    <>
+      <div className="account-dropdown">
+        <button onClick={toggleMenu}>Hello, {loggedUser.split("@")[0]}!</button>
+        {isMenuOpen && (
+          <ul className="dropdown-menu">
+            <li onClick={() => handleOptionClick("Change password")}>
+              Change Password
+            </li>
+            <li onClick={() => handleOptionClick("Scoreboard")}>
+              Your Scoreboard
+            </li>
+            <li onClick={() => handleOptionClick("Add new quiz")}>
+              Add new quiz
+            </li>
+            <li onClick={() => handleOptionClick("Logout")}>Logout</li>
+          </ul>
+        )}
+      </div>
+      {showFeedback && (
+        <Feedback
+          isOpen={true}
+          onClose={() => {
+            setShowFeedback(false);
+            setLoggedUser("");
+          }}
+          onSubmit={() => handleFeedbackSubmit()}
+          loggedUser={loggedUser}
+        />
       )}
-    </div>
+    </>
   );
 }

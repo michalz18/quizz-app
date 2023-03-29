@@ -2,8 +2,9 @@ import { useState } from "react"
 import "./LoginForm.css"
 import logo from "../header/logo.jpg"
 
+
 const noUserMessage =
-	"Either email or password are incorect. Did you mean to Sign up?"
+   "Either email or password are incorect. Did you mean to Sign up?"
 const loginTakenMessage =
 	"Sorry, but there is allready an account using that email."
 
@@ -137,4 +138,7 @@ function LoginForm({ loggUser }) {
 	)
 }
 
+
 export default LoginForm
+
+

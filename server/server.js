@@ -1,8 +1,10 @@
+
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const dbURI = require("./mongodbkey");
 const Quiz = require("./models/quiz");
+const Feedback = require("./models/feedback");
 const Account = require("./models/account");
 const bcrypt = require("bcrypt");
 const passportSetUp = require("./passport.js");
@@ -27,14 +29,15 @@ app.get("/auth/google/callback", passport.authenticate("google"), (req, res) => 
   res.redirect("http://localhost:3000/");
 });
 
+
 app.get("/quizzes", async (req, res) => {
-  try {
-    const response = await Quiz.find();
-    res.status(200).json(response);
-  } catch (error) {
-    res.status(500).json({ message: "ServerError!", error: error.message });
-  }
-});
+	try {
+		const response = await Quiz.find()
+		res.status(200).json(response)
+	} catch (error) {
+		res.status(500).json({ message: "ServerError!", error: error.message })
+	}
+})
 
 app.post("/login", async (req, res) => {
   try {
@@ -134,16 +137,61 @@ app.post("/quizzes/history", async (req, res) => {
   }
 });
 
+app.post("/quiz-add", async (req, res) => {
+	try {
+		const quiz = new Quiz(req.body)
+		await quiz.save()
+		res.status(201).json({ message: "Quiz created successfully" })
+	} catch (error) {
+		res
+			.status(400)
+			.json({ message: "Quiz creation failed", error: error.message })
+	}
+});
+
+app.get("/score/:email", async (req, res) => {
+  try {
+    const email = req.params.email;
+    const user = await Account.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const quizIds = user.quizes.map((quiz) => quiz.id);
+    const quizzes = await Quiz.find({ _id: { $in: quizIds } });
+    const scores = quizzes.map((quiz) => ({
+      id: quiz._id,
+      title: quiz.title,
+      score: user.quizes.find((q) => q.id.toString() === quiz._id.toString())
+        .score,
+    }));
+    res.status(200).json(scores);
+  } catch (error) {
+    res.status(500).json({ message: "ServerError!", error: error.message });
+  }
+});
+
+app.post("/feedback", async (req, res) => {
+  try {
+    const { user, feedbackText, feedbackRate } = req.body;
+    const feedback = await Feedback.create({ user, feedbackText, feedbackRate });
+    
+    res.status(201).json({ message: "Feedback created successfully", feedback });
+  } catch (error) {
+    res.status(400).json({ message: "Feedback creation failed", error: error.message });
+  }
+});
+
+
 
 mongoose
-  .connect(dbURI)
-  .then(() => {
-    console.log("Connected to Database!");
-  })
-  .catch((error) => {
-    console.log("Unable to connect to Database:", error);
-  });
+	.connect(dbURI)
+	.then(() => {
+		console.log("Connected to Database!")
+	})
+	.catch(error => {
+		console.log("Unable to connect to Database:", error)
+	})
 
 app.listen(8080, () => {
-  console.log("Server started on port 8080");
-});
+	console.log("Server started on port 8080")
+})

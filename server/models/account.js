@@ -5,7 +5,7 @@ const accountSchema = new Schema({
   googleId: String,
   email: String,
   password: String,
-  quizes: Array
+  quizes: Array,
 });
 
 const Account = model("Account", accountSchema);
