@@ -1,17 +1,34 @@
-const express = require("express")
-const cors = require("cors")
-const mongoose = require("mongoose")
-const dbURI = require("./mongodbkey")
-const Quiz = require("./models/quiz")
-const Account = require("./models/account")
-const Feedback = require("./models/feedback");
-const bcrypt = require("bcrypt")
-const saltRounds = 10
-// to delete
-const app = express()
 
-app.use(cors())
-app.use(express.json())
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const dbURI = require("./mongodbkey");
+const Quiz = require("./models/quiz");
+const Feedback = require("./models/feedback");
+const Account = require("./models/account");
+const bcrypt = require("bcrypt");
+const passportSetUp = require("./passport.js");
+const passport = require('passport');
+const cookieSession = require("cookie-session");
+const saltRounds = 10;
+const app = express();
+
+app.use(express.json());
+app.use(cookieSession({
+  name: "session",
+  keys:["quizApp"],
+  maxAge: 24*60*60*100
+}))
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(cors());
+
+app.get("/auth/google", passport.authenticate("google", {scope:["email"]}))
+app.get("/auth/google/callback", passport.authenticate("google"), (req, res) => {
+  res.cookie('user', req._user);
+  res.redirect("http://localhost:3000/");
+});
+
 
 app.get("/quizzes", async (req, res) => {
 	try {
@@ -36,6 +53,7 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ message: "ServerError!", error: error.message });
   }
 });
+
 
 app.post("/signup", async (req, res) => {
   try {

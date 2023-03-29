@@ -10,6 +10,7 @@ import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
 import AddQuizForm from "./components/AddQuizForm/AddQuizForm"
 import "./App.css";
 
+
 const LoggedUserContext = createContext();
 
 export function useLoggedUser() {
@@ -17,7 +18,7 @@ export function useLoggedUser() {
 }
 
 function App() {
- const [loggedUser, setLoggedUser] = useState("");
+  const [loggedUser, setLoggedUser] = useState("");
  const [contentChoices, setContentChoices] = useState([
    { element: <Home goToQuizes={() => changePage("Quizzes")} />, text: "Home", active: true },
    { element: <How goToQuizes={() => changePage("Quizzes")} />, text: "How it works?", active: false },
@@ -25,13 +26,22 @@ function App() {
    { element: <About />, text: "About us", active: false },
    { element: <AddQuizForm />, text: "Add new quiz", active: false },
  ]);
+  useEffect(() => {
+    const userFromGoogle = getCookie("user");
+    if (userFromGoogle) setLoggedUser(userFromGoogle);
+  }, [])
+
+  function getCookie(key) {
+    const b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
+    return b ? b.pop().replace('%40', '@') : null;
+  }
+
 
  useEffect(() => {
    setContentChoices([
      ...contentChoices,
      { element: <Scoreboard changePage={changePage} />, text: "Scoreboard", active: false },
-     { element: <ChangePassword />, text: "Change password", active: false },
-   
+     { element: <ChangePassword />, text: "Change password", active: false },   
    ]);
   }, [loggedUser]);
 
