@@ -21,11 +21,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
 
-app.get("/auth/google", passport.authenticate("google", {scope:["profile"]}))
-app.get("/auth/google/callback", passport.authenticate("google", {
-  successRedirect: "http://localhost:3000/",
-  failureRedirect:""
-}))
+app.get("/auth/google", passport.authenticate("google", {scope:["email"]}))
+app.get("/auth/google/callback", passport.authenticate("google"), (req, res) => {
+  res.cookie('user', req._user);
+  res.redirect("http://localhost:3000/");
+});
 
 app.get("/quizzes", async (req, res) => {
   try {

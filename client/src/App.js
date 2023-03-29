@@ -9,6 +9,7 @@ import Scoreboard from "./components/account/Scoreboard";
 import ChangePassword from "./components/account/ChangePasword";
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
 
+
 const LoggedUserContext = createContext();
 
 export function useLoggedUser() {
@@ -24,16 +25,22 @@ function App() {
     { element: <Quizzes />, text: "Quizzes", active: false },
     { element: <About />, text: "About us", active: false },
   ]);
-console.log(loggedUser)
+  useEffect(() => {
+    const userFromGoogle = getCookie("user");
+    if (userFromGoogle) setLoggedUser(userFromGoogle);
+  }, [])
+
+  function getCookie(key) {
+    const b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
+    return b ? b.pop().replace('%40', '@') : null;
+  }
 
   useEffect(() => {
     setContentChoices([
       ...contentChoices,
       { element: <Scoreboard />, text: "Scoreboard", active: false },
       { element: <ChangePassword />, text: "Change password", active: false },
-     
     ]);
-  
   }, [loggedUser]);
 
   const [menuChoices, setMenuChoices] = useState([contentChoices[1], contentChoices[2], contentChoices[3]]);

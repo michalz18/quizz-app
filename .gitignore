@@ -1,3 +1,3 @@
 /**/node_modules
 server/mongodbkey.js
-server/passport.js
+server/googleAuth.js
