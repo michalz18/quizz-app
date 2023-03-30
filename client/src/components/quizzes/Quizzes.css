@@ -1,26 +1,37 @@
-/* Default styles */
+
 .button-container {
     display: flex;
     flex-wrap: wrap;
+
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 800px;
+    min-height: 1000px;
   }
   
   .button-container button {
+    font-family: 'Poppins';
     width: 45%;
     margin: 10px;
     background-color: #FCC822;
     color: black;
     border: none;
-    padding: 80px;
+    padding: 80px 100px 15px 20px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 2rem;
+    font-size: 2.5rem;
+    text-align: left;
+  font-weight: bold;
   }
   
   .button-container button:hover {
     background-color: #6C6C6C;
   }
   
-  /* Responsive styles for smaller screens */
+ 
   @media (max-width: 600px) {
     .button-container {
       flex-direction: column;
@@ -33,6 +44,7 @@
       padding: 10px;
     }
     .button-container h2{
+      height: 100%;
       width: 100%;
       font-size: 2rem;
       padding: 10px;
@@ -42,8 +54,5 @@
       display: none;
     }
   
-    /* .button-container .progress-btn:nth-child(i + 1) {
-      display: inline-block;
-      margin-top: 20px;
-    } */
+ 
   }
