@@ -3,7 +3,7 @@ import "./DropdownMenu.css";
 import { useLoggedUser } from "../../App";
 import Feedback from "../feedback/Feedback";
 
-export default function AccountDropdown({ changePage, dropdownChoices }) {
+export default function AccountDropdown({ changePage, dropdownChoices, loggout }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const { loggedUser, setLoggedUser } = useLoggedUser();
@@ -22,8 +22,7 @@ export default function AccountDropdown({ changePage, dropdownChoices }) {
   }
 
   function handleFeedbackSubmit() {
-    setLoggedUser("");
-    changePage("Home");
+    loggout();
   }
 
   return (
@@ -46,7 +45,7 @@ export default function AccountDropdown({ changePage, dropdownChoices }) {
           isOpen={true}
           onClose={() => {
             setShowFeedback(false);
-            setLoggedUser("");
+            loggout();
           }}
           onSubmit={() => handleFeedbackSubmit()}
           loggedUser={loggedUser}

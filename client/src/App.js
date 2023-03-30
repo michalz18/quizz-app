@@ -26,21 +26,14 @@ function App() {
     { element: <About />, text: "About us", active: false },
   ]);
   const [loggedChoices, setLoggedChoices] = useState([]);
-
-  useEffect(() => {
-    if (loggedUser) {
-      const loggedChoices = [
-        { element: <AddQuizForm />, text: "Add new quiz", active: false },
-        { element: <Scoreboard changePage={changePage} />, text: "Scoreboard", active: false},
-      ]
-      if (!loggedWithGoogle) loggedChoices.push({ element: <ChangePassword />, text: "Change password", active: false })
-      setContentChoices([...contentChoices, ...loggedChoices]);
-      setLoggedChoices(loggedChoices);
-    }
-  }, [loggedUser]);
-
   const [content, setContent] = useState(findContent());
   const [modal, setModal] = useState(false);
+
+  useEffect(() => {
+    if (loggedUser) setLoggin();
+  }, [loggedUser]);
+
+
   useEffect(() => {
     const userFromGoogle = getCookie("user");
     if (userFromGoogle) {
@@ -48,11 +41,6 @@ function App() {
       setLoggedWithGoogle(true);
     };
   }, []);
-
-  function getCookie(key) {
-    const b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
-    return b ? b.pop().replace("%40", "@") : null;
-  }
 
   useEffect(() => {
     const newChoices = [...contentChoices];
@@ -64,6 +52,27 @@ function App() {
       contentChoices.find((choice) => choice.active).text
     );
   }, [content]);
+
+  function setLoggin() {
+    const loggedChoices = [
+      { element: <AddQuizForm />, text: "Add new quiz", active: false },
+      { element: <Scoreboard changePage={changePage} />, text: "Scoreboard", active: false },
+    ];
+    if (!loggedWithGoogle)
+      loggedChoices.push({ element: <ChangePassword />, text: "Change password", active: false });
+    setContentChoices([...contentChoices, ...loggedChoices]);
+    setLoggedChoices(loggedChoices);
+  }
+
+  function loggout() {
+    setLoggedUser(""); 
+    changePage("Home");
+    setContentChoices(contentChoices.slice(0,4));
+    setLoggedChoices([]);
+    sessionStorage.setItem("currentContent", "Home");
+    if (loggedWithGoogle) document.cookie = 'user'+'=; Max-Age=-99999999;';
+    setLoggedWithGoogle(false);
+  }
 
   function findContent() {
     const text = sessionStorage.getItem("currentContent");
@@ -88,8 +97,13 @@ function App() {
     setModal(true);
   };
 
-  function loggUser(user) {
+  function loggin(user) {
     setLoggedUser(user);
+  }
+
+  function getCookie(key) {
+    const b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
+    return b ? b.pop().replace("%40", "@") : null;
   }
 
   return (
@@ -101,10 +115,11 @@ function App() {
           onLogoClick={() => changePage("Home")}
           changePage={changePage}
           dropdownChoices={loggedChoices}
+          loggout={loggout}
         />
         <div id="content">
           {content}
-          <LoginPopUp open={modal} close={closeModal} loggUser={loggUser} />
+          <LoginPopUp open={modal} close={closeModal} loggUser={loggin} />
         </div>
       </div>
     </LoggedUserContext.Provider>
