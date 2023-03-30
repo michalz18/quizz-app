@@ -114,7 +114,11 @@ function App() {
   }
 
   function changePage(text) {
-    setContent(contentChoices.find((choice) => choice.text === text).element);
+    if (!loggedUser && text === "Quizzes") { 
+      openModal();
+    } else {
+      setContent(contentChoices.find((choice) => choice.text === text).element);
+    }
   }
 
   function loggin(user) {
