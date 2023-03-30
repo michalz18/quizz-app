@@ -30,7 +30,12 @@ function App() {
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
-    if (loggedUser) setLoggin();
+    setContent(findContent())
+  }, [contentChoices])
+
+  useEffect(() => {
+    if (loggedUser) {
+      setLoggin()};
   }, [loggedUser]);
 
 
@@ -39,6 +44,7 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (content) {
     const newChoices = [...contentChoices];
     newChoices.forEach((choice) => (choice.active = false));
     newChoices.find((choice) => choice.element === content).active = true;
@@ -47,6 +53,7 @@ function App() {
       "currentContent",
       contentChoices.find((choice) => choice.active).text
     );
+    }
   }, [content]);
 
   function findCurrentUser() {
@@ -69,6 +76,7 @@ function App() {
       loggedChoices.push({ element: <ChangePassword />, text: "Change password", active: false });
     setContentChoices([...contentChoices, ...loggedChoices]);
     setLoggedChoices(loggedChoices);
+    setContent(findContent())
   }
 
   function loggout() {
@@ -84,9 +92,10 @@ function App() {
 
   function findContent() {
     const text = sessionStorage.getItem("currentContent");
-    return contentChoices.find((choice) =>
+    const content = contentChoices.find((choice) =>
       text === null ? choice.active : choice.text === text
-    ).element;
+    );
+    return (content) ? content.element : null;   
   }
 
   function changePage(text) {
