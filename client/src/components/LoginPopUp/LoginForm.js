@@ -9,8 +9,8 @@ const loginTakenMessage =
   "Sorry, but there is allready an account using that email.";
 
 function LoginForm({ loggUser, closeModal }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("ala@gmail.com");
+  const [password, setPassword] = useState("123Wars$my");
   const [logInMessage, setLogInMessage] = useState("");
 
   async function handleSignUp() {
@@ -134,10 +134,10 @@ function LoginForm({ loggUser, closeModal }) {
             </div>
           </div>
           <div id="login-submit-btns">
-            <button className="login" onClick={handleLogIn}>
+            <button className="login-btns" onClick={handleLogIn}>
               LOGIN
             </button>
-            <button className="sigup-btn" onClick={handleSignUp}>
+            <button className="login-btns" onClick={handleSignUp}>
               SIGNUP
             </button>
           </div>
