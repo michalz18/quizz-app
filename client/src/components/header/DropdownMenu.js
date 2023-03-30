@@ -26,8 +26,8 @@ export default function AccountDropdown({ changePage, dropdownChoices, loggout }
         <button >Hello, {loggedUser.split("@")[0]}!</button>
         
           <ul className="dropdown-menu">
-            {dropdownChoices.map((choice) => (
-              <li onClick={() => handleOptionClick(choice.text)}>
+            {dropdownChoices.map((choice, index) => (
+              <li key={index} onClick={() => handleOptionClick(choice.text)}>
               {choice.text}
             </li>
             ))}
