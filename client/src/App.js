@@ -51,11 +51,7 @@ function App() {
   }, [loggedUser]);
 
   useEffect(() => {
-    const userFromGoogle = getCookie("user");
-    if (userFromGoogle) {
-      setLoggedUser(userFromGoogle);
-      setLoggedWithGoogle(true);
-    }
+    findCurrentUser();
   }, []);
 
   useEffect(() => {
@@ -68,6 +64,17 @@ function App() {
       contentChoices.find((choice) => choice.active).text
     );
   }, [content]);
+
+  function findCurrentUser() {
+    const userFromGoogle = getCookie("user");
+    if (userFromGoogle) {
+      setLoggedUser(userFromGoogle);
+      setLoggedWithGoogle(true);
+    };
+    const rememberedUser = sessionStorage.getItem("user");
+    if (rememberedUser)
+      setLoggedUser(rememberedUser);
+  }
 
   function setLoggin() {
     const loggedChoices = [
@@ -94,7 +101,8 @@ function App() {
     setContentChoices(contentChoices.slice(0, 4));
     setLoggedChoices([]);
     sessionStorage.setItem("currentContent", "Home");
-    if (loggedWithGoogle) document.cookie = "user" + "=; Max-Age=-99999999;";
+    sessionStorage.setItem("user", "");
+    if (loggedWithGoogle) document.cookie = 'user'+'=; Max-Age=-99999999;';
     setLoggedWithGoogle(false);
   }
 
@@ -111,6 +119,7 @@ function App() {
 
   function loggin(user) {
     setLoggedUser(user);
+    setModal(false);
   }
 
   function getCookie(key) {

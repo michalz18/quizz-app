@@ -76,7 +76,7 @@ input:focus{
 #google-login-wrapper{
     display: flex;
     font-size: 0.7em;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     padding: 0  0 1em 1.2em;
 }
@@ -90,3 +90,25 @@ input:focus{
 #login-submit-btns{
     display: flex;
 }
+
+#login-submit-btns{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-btns {
+    margin: 0.5em;
+    padding: 0.2em;
+    color: var(--color-yellow);
+	border: 2px solid var(--color-yellow);
+	background-color: var(--color-background);
+	cursor: pointer;
+}
+
+.login-btns:hover {
+    border-color: var(--color-darkgray);
+	background-color: var(--color-darkgray);
+	color: var(--color-yellow);
+}
+
