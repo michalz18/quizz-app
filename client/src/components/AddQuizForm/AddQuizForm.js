@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import PureModal from "react-pure-modal";
+import PureModal from "react-pure-modal"
 import "./AddQuizForm.css"
 function AddQuizForm() {
 	const [quizName, setQuizName] = useState("")
@@ -95,9 +95,9 @@ function AddQuizForm() {
 	}
 
 	const closeModal = () => {
-    setModalVisible(false);
-    setModalContent("");
-  };
+		setModalVisible(false)
+		setModalContent("")
+	}
 
 	return (
 		<div>
@@ -149,7 +149,6 @@ function AddQuizForm() {
 											handleAnswerChange(event, questionIndex, answerIndex)
 										}
 									/>
-									{/* <div className='input-group-text'> */}
 									<input
 										className='form-check-input mt-0 checkbox-input'
 										value=''
@@ -160,7 +159,6 @@ function AddQuizForm() {
 											handleCheckboxChange(event, questionIndex, answerIndex)
 										}
 									/>
-									{/* </div> */}
 								</div>
 							))}
 						</div>
@@ -178,12 +176,11 @@ function AddQuizForm() {
 				</div>
 			</form>
 			<PureModal
-        isOpen={modalVisible}
-        onClose={closeModal}
-        className="my-modal"
-      >
-        {modalContent}
-      </PureModal>
+				isOpen={modalVisible}
+				onClose={closeModal}
+				className='my-modal'>
+				{modalContent}
+			</PureModal>
 		</div>
 	)
 }
