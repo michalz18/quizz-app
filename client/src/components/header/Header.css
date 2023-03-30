@@ -45,12 +45,21 @@
 	margin-right: 50px;
 }
 
+#navbar {
+    padding-right: 20px;
+}
+
+
 #login {
+	display: inline-block;
 	width: 100px;
 	height: 50px;
 	position: absolute;
 	top: 40%;
 	right: 10px;
+	font-family: "Poppins", sans-serif;
+	text-align: center;
+	min-width: 100px;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -132,6 +141,7 @@
 		height: 40px;
 		top: 50%;
 		transform: translateY(-50%);
+		text-align: center;
 	}
 	#bar-icon-wrapper {
 		margin-left: 50px;
@@ -162,6 +172,8 @@
 		width: 80px;
 		height: 40px;
 		left: 20px;
+		text-align: center;
+		justify-content: center;
 	}
 
 	#navigation {
