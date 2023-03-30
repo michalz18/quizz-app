@@ -28,7 +28,6 @@ function Quizzes(props) {
     function chooseQuiz(quiz) { 
         setSelectedQuiz(quiz);
         setIsModalOpen(true);
-        console.log(isModalOpen)
         setQuizzesVisible(false)
     }
 
