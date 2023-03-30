@@ -17,15 +17,6 @@ export function useLoggedUser() {
 }
 
 function App() {
-
-  const closeModal = () => {
-    setModal(false);
-  };
-
-  const openModal = () => {
-    setModal(true);
-  };
-
   const [loggedUser, setLoggedUser] = useState("");
   const [loggedWithGoogle, setLoggedWithGoogle] = useState(false);
   const [contentChoices, setContentChoices] = useState([
@@ -135,6 +126,16 @@ function App() {
     const b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
     return b ? b.pop().replace("%40", "@") : null;
   }
+
+  
+  function closeModal() {
+    setModal(false);
+  };
+
+  function openModal() {
+    setModal(true);
+  };
+
 
   return (
     <LoggedUserContext.Provider value={{ loggedUser, setLoggedUser }}>
