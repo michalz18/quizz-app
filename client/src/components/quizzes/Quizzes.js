@@ -25,7 +25,7 @@ function Quizzes(props) {
 
     console.log(quizzes)
 
-    function handleClick(quiz) { //zmienić nazwę funkcji na funkcjonalnność jaką wykonuje
+    function chooseQuiz(quiz) { 
         setSelectedQuiz(quiz);
         setIsModalOpen(true);
         console.log(isModalOpen)
@@ -44,7 +44,7 @@ function Quizzes(props) {
     return (
         <div className='button-container'>
             {quizzesVisible && quizzes && quizzes.map((quiz, index) => (
-                <button onClick={() => handleClick(quiz)} key={index}>{quiz.title}</button>
+                <button onClick={() => chooseQuiz(quiz)} key={index}>{quiz.title}</button>
             ))}
 
             {selestedQuiz && (
