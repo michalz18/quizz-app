@@ -1,7 +1,10 @@
 import React, { useState } from "react"
-// to delete
+import PureModal from "react-pure-modal";
+import "./AddQuizForm.css"
 function AddQuizForm() {
 	const [quizName, setQuizName] = useState("")
+	const [modalVisible, setModalVisible] = useState(false)
+	const [modalContent, setModalContent] = useState("")
 	const [questions, setQuestions] = useState([
 		{
 			question: "",
@@ -61,6 +64,9 @@ function AddQuizForm() {
 
 	const handleSubmit = async event => {
 		event.preventDefault()
+
+		if (!quizName) return
+
 		const response = await fetch("http://localhost:8080/quiz-add", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
@@ -83,58 +89,102 @@ function AddQuizForm() {
 					],
 				},
 			])
+			setModalContent("Your quiz successfully added!")
+			setModalVisible(true)
 		}
 	}
 
+	const closeModal = () => {
+    setModalVisible(false);
+    setModalContent("");
+  };
+
 	return (
-		<form onSubmit={handleSubmit}>
-			<label>
-				Quiz Name:
-				<input type='text' value={quizName} onChange={handleQuizNameChange} />
-			</label>
-			{questions.map((question, questionIndex) => (
-				<div key={questionIndex}>
-					<label>
-						Question:
-						<input
-							type='text'
-							name='question'
-							value={question.question}
-							onChange={event => handleQuestionChange(event, questionIndex)}
-						/>
-					</label>
-					{question.answers.map((answer, answerIndex) => (
-						<div key={answerIndex}>
-							<label>
-								Answer:
-								<input
-									type='text'
-									name='answer'
-									value={answer.answer}
-									onChange={event =>
-										handleAnswerChange(event, questionIndex, answerIndex)
-									}
-								/>
-							</label>
-							<label>
-								Correct:
-								<input
-									type='checkbox'
-									checked={answer.isCorrect}
-									onChange={event =>
-										handleCheckboxChange(event, questionIndex, answerIndex)
-									}
-								/>
-							</label>
-						</div>
-					))}
+		<div>
+			<div className='text'>
+				<p>
+					This is where you can add yours quiz to the app. Remember to add a
+					title for the quiz and at least one question. You can add two, three,
+					or four answers to each question. Only one answer should be correct -
+					select it by placing a check in an appropriate box.
+				</p>
+			</div>
+			<form onSubmit={handleSubmit}>
+				<div className='title'>Quiz Name:</div>
+				<div>
+					<input
+						className='form-control quiz-name'
+						placeholder='type quiz name'
+						type='text'
+						value={quizName}
+						onChange={handleQuizNameChange}
+					/>
 				</div>
-			))}
-			<button type='button' onClick={handleAddQuestion}>
-				Add Another Question
-			</button>
-			<button type='submit'>Save and Close Form</button>
-		</form>
+
+				{questions.map((question, questionIndex) => (
+					<div key={questionIndex}>
+						<div className='title'>Question:</div>
+						<div>
+							<input
+								className='form-control quiz-question'
+								placeholder='type question'
+								type='text'
+								name='question'
+								value={question.question}
+								onChange={event => handleQuestionChange(event, questionIndex)}
+							/>
+						</div>
+						<div className='title'>
+							Answers:
+							{question.answers.map((answer, answerIndex) => (
+								<div className='input-group mb-3 container' key={answerIndex}>
+									<input
+										className='form-control answer-input'
+										aria-label='Text input with checkbox'
+										placeholder='type answer'
+										type='text'
+										name='answer'
+										value={answer.answer}
+										onChange={event =>
+											handleAnswerChange(event, questionIndex, answerIndex)
+										}
+									/>
+									{/* <div className='input-group-text'> */}
+									<input
+										className='form-check-input mt-0 checkbox-input'
+										value=''
+										aria-label='Checkbox for following text input'
+										type='checkbox'
+										checked={answer.isCorrect}
+										onChange={event =>
+											handleCheckboxChange(event, questionIndex, answerIndex)
+										}
+									/>
+									{/* </div> */}
+								</div>
+							))}
+						</div>
+					</div>
+				))}
+				<div>
+					<button className='btn' type='button' onClick={handleAddQuestion}>
+						Add Another Question
+					</button>
+				</div>
+				<div>
+					<button className='btn' type='submit'>
+						Save and Close Form
+					</button>
+				</div>
+			</form>
+			<PureModal
+        isOpen={modalVisible}
+        onClose={closeModal}
+        className="my-modal"
+      >
+        {modalContent}
+      </PureModal>
+		</div>
 	)
 }
 
