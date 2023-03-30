@@ -4,16 +4,11 @@ import { useLoggedUser } from "../../App";
 import Feedback from "../feedback/Feedback";
 
 export default function AccountDropdown({ changePage, dropdownChoices, loggout }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   const [showFeedback, setShowFeedback] = useState(false);
   const { loggedUser, setLoggedUser } = useLoggedUser();
 
-  function toggleMenu() {
-    setIsMenuOpen(!isMenuOpen);
-  }
-
   function handleOptionClick(option) {
-    setIsMenuOpen(false);
     if (option === "Logout") {
       setShowFeedback(true);
     } else {
@@ -28,8 +23,8 @@ export default function AccountDropdown({ changePage, dropdownChoices, loggout }
   return (
     <>
       <div className="account-dropdown">
-        <button onClick={toggleMenu}>Hello, {loggedUser.split("@")[0]}!</button>
-        {isMenuOpen && (
+        <button >Hello, {loggedUser.split("@")[0]}!</button>
+        
           <ul className="dropdown-menu">
             {dropdownChoices.map((choice) => (
               <li onClick={() => handleOptionClick(choice.text)}>
@@ -38,7 +33,7 @@ export default function AccountDropdown({ changePage, dropdownChoices, loggout }
             ))}
             <li onClick={() => handleOptionClick("Logout")}>Logout</li>
           </ul>
-        )}
+        
       </div>
       {showFeedback && (
         <Feedback
