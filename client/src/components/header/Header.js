@@ -5,7 +5,7 @@ import logo from "./logo.jpg";
 import DropdownMenu from "./DropdownMenu";
 import { useLoggedUser } from "../../App";
 
-function Header({ menuChoices, changePage, onLogoClick, openModal, dropdownChoices }) {
+function Header({ menuChoices, changePage, onLogoClick, openModal, dropdownChoices, loggout }) {
   const { loggedUser } = useLoggedUser();
   
   return (
@@ -35,7 +35,7 @@ function Header({ menuChoices, changePage, onLogoClick, openModal, dropdownChoic
           LOGIN
         </button>
       ) : (
-        <DropdownMenu changePage={changePage} dropdownChoices={dropdownChoices}/>
+        <DropdownMenu changePage={changePage} dropdownChoices={dropdownChoices} loggout={loggout}/>
       )}
     </div>
   );
