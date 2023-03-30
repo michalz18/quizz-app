@@ -43,12 +43,15 @@ app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await Account.findOne({ email: email });
-    bcrypt.compare(password, user.password, function (err, result) {
+    if (user) {
+      bcrypt.compare(password, user.password, function (err, result) {
       if (err) {
-        res.status().json([]);
+        res.status(200).json([]);
       }
       res.status(200).json(result ? { email: user.email } : []);
     });
+    }
+    res.status(200).json([]);
   } catch (error) {
     res.status(500).json({ message: "ServerError!", error: error.message });
   }
