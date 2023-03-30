@@ -1,13 +1,16 @@
 import React from "react";
 import HowItWorksImage from "./howitworksimg.png";
 import "./How.css";
+import { useLoggedUser } from "../../App";
 
-function How({ goToQuizes }) {
+function How({ goToQuizes, openLogInModal }) {
+  const { loggedUser } = useLoggedUser();
+
   return (
     <div className="How">
-        <img className="manImage" src={HowItWorksImage} alt="how it works" />
+      <img className="manImage" src={HowItWorksImage} alt="how it works" />
       <div className="right-container">
-        <h1 className="header" >Welcome to our quiz web app!</h1>
+        <h1 className="header">Welcome to our quiz web app!</h1>
         <p className="text">
           Our app is designed to provide an engaging and entertaining way for
           you to test your knowledge, learn new things, and challenge yourself
@@ -29,9 +32,15 @@ function How({ goToQuizes }) {
           app is a fun and engaging way to learn new things, challenge yourself,
           and have fun with friends. Access our app today and start exploring!
         </p>
-        <button className="move-btn" onClick={goToQuizes}>
-          Start solving
-        </button>
+        {loggedUser ? (
+          <button className="move-btn" onClick={goToQuizes}>
+            Start solving
+          </button>
+        ) : (
+          <button className="move-btn" onClick={openLogInModal}>
+            Start solving
+          </button>
+        )}
       </div>
     </div>
   );

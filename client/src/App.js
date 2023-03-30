@@ -17,11 +17,28 @@ export function useLoggedUser() {
 }
 
 function App() {
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
+  const openModal = () => {
+    setModal(true);
+  };
+
   const [loggedUser, setLoggedUser] = useState("");
   const [loggedWithGoogle, setLoggedWithGoogle] = useState(false);
   const [contentChoices, setContentChoices] = useState([
-    { element: <Home goToQuizes={() => changePage("Quizzes")} />,text: "Home", active: true},
-    { element: <How goToQuizes={() => changePage("Quizzes")} />, text: "How it works?", active: false},
+    {
+      element: <Home goToQuizes={() => changePage("Quizzes")} openLogInModal={openModal}/>,
+      text: "Home",
+      active: true,
+    },
+    {
+      element: <How goToQuizes={() => changePage("Quizzes")} openLogInModal={openModal} />,
+      text: "How it works?",
+      active: false,
+    },
     { element: <Quizzes />, text: "Quizzes", active: false },
     { element: <About />, text: "About us", active: false },
   ]);
@@ -32,7 +49,6 @@ function App() {
   useEffect(() => {
     if (loggedUser) setLoggin();
   }, [loggedUser]);
-
 
   useEffect(() => {
     findCurrentUser();
@@ -63,18 +79,26 @@ function App() {
   function setLoggin() {
     const loggedChoices = [
       { element: <AddQuizForm />, text: "Add new quiz", active: false },
-      { element: <Scoreboard changePage={changePage} />, text: "Scoreboard", active: false },
+      {
+        element: <Scoreboard changePage={changePage} />,
+        text: "Scoreboard",
+        active: false,
+      },
     ];
     if (!loggedWithGoogle)
-      loggedChoices.push({ element: <ChangePassword />, text: "Change password", active: false });
+      loggedChoices.push({
+        element: <ChangePassword />,
+        text: "Change password",
+        active: false,
+      });
     setContentChoices([...contentChoices, ...loggedChoices]);
     setLoggedChoices(loggedChoices);
   }
 
   function loggout() {
-    setLoggedUser(""); 
+    setLoggedUser("");
     changePage("Home");
-    setContentChoices(contentChoices.slice(0,4));
+    setContentChoices(contentChoices.slice(0, 4));
     setLoggedChoices([]);
     sessionStorage.setItem("currentContent", "Home");
     sessionStorage.setItem("user", "");
@@ -90,20 +114,8 @@ function App() {
   }
 
   function changePage(text) {
-    if (text === "Quizzes" && !loggedUser) {
-      setModal(true);
-    } else {
-      setContent(contentChoices.find((choice) => choice.text === text).element);
-    }
+    setContent(contentChoices.find((choice) => choice.text === text).element);
   }
-
-  const closeModal = () => {
-    setModal(false);
-  };
-
-  const openModal = () => {
-    setModal(true);
-  };
 
   function loggin(user) {
     setLoggedUser(user);
@@ -119,7 +131,7 @@ function App() {
     <LoggedUserContext.Provider value={{ loggedUser, setLoggedUser }}>
       <div className="App">
         <Header
-          menuChoices={contentChoices.slice(0,4)}
+          menuChoices={contentChoices.slice(0, 4)}
           openModal={openModal}
           onLogoClick={() => changePage("Home")}
           changePage={changePage}

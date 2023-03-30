@@ -21,10 +21,6 @@
     font-family: "Poppins", sans-serif;
 }
 
-.text{
-    color: var(--color-lightgray);
-}
-
 @media (max-width: 768px) {
     .About {
         margin-top: 25px;
