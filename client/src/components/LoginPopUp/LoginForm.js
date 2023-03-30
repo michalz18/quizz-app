@@ -12,6 +12,7 @@ function LoginForm({ loggUser, closeModal }) {
   const [email, setEmail] = useState("ala@gmail.com");
   const [password, setPassword] = useState("123Wars$my");
   const [logInMessage, setLogInMessage] = useState("");
+  const [isRemember, setIsRemember] = useState(true);
 
   async function handleSignUp() {
     const emailError = validationMethods.validateEmail(email);
@@ -28,7 +29,10 @@ function LoginForm({ loggUser, closeModal }) {
 
   async function handleLogIn() {
     const data = await getUser();
-    data.length === 0 ? setLogInMessage(noUserMessage) : loggUser(data.email);
+	if (data.length != 0) {
+		loggUser(data.email);
+		if (setIsRemember) sessionStorage.setItem("user", data.email);
+	} else {setLogInMessage(noUserMessage)};
   }
 
   async function saveUser() {
@@ -71,6 +75,10 @@ function LoginForm({ loggUser, closeModal }) {
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
+  };
+
+  const handleRememberChange = (event) => {
+    setIsRemember(event.target.value);
   };
 
   const logWithGoogle = () => {
@@ -122,7 +130,7 @@ function LoginForm({ loggUser, closeModal }) {
           </label>
           <div id="additional-choices">
             <label className="checkbox-wrapper">
-              <input type="checkbox" />
+              <input type="checkbox" value={isRemember} onChange={handleRememberChange}/>
               <div className="checkbox-label">Remember Me</div>
             </label>
             <div className="forgot-password">Forgot Password?</div>

@@ -50,8 +50,7 @@ app.post("/login", async (req, res) => {
       }
       res.status(200).json(result ? { email: user.email } : []);
     });
-    }
-    res.status(200).json([]);
+    } else { res.status(200).json([]);}
   } catch (error) {
     res.status(500).json({ message: "ServerError!", error: error.message });
   }
