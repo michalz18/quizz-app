@@ -65,7 +65,11 @@ function AddQuizForm() {
 	const handleSubmit = async event => {
 		event.preventDefault()
 
-		if (!quizName) return
+		if (!quizName) {
+			setModalContent("You must type quiz name or question")
+			setModalVisible(true)
+			return
+		}
 
 		const response = await fetch("http://localhost:8080/quiz-add", {
 			method: "POST",
