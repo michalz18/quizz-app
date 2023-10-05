@@ -65,4 +65,4 @@ Project is created with:
 
 ## 📜 License
 
-WildEventManager is MIT licensed.
+QuizzApp is MIT licensed.
