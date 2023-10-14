@@ -36,7 +36,7 @@ function QuizModal(props) {
         }
       
         return () => clearInterval(timer);
-      }, [timeLeft]);
+      }, [timeLeft,currentQuestionIndex]);
 
       function triggerAnswer (){
         setDisableBtn(!disableBtn)

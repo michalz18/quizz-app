@@ -156,12 +156,12 @@
 
   .button-container .progress-btn-progress-btn {
     display: inline-block;
-    margin-top: 20px;
+  
   
     height: 5px;
     width: 5px;
     padding: 10px;
-    margin: 30px;
+    margin: 2rem;
     align-items: center;
     justify-content: center;
     border-radius: 50%;

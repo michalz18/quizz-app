@@ -1,4 +1,6 @@
-
+.panel-body.scrollable h2 {
+border-radius: 50%;
+}
 .button-container {
     display: flex;
     flex-wrap: wrap;
